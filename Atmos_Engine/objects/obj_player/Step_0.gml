@@ -121,8 +121,8 @@ switch(state) {
 	
 		hs_inst = instance_position(mouse_x, mouse_y, obj_hookshot_point); 
 		if (hs_inst != noone) {
-			hs_x_to = ((hs_inst.x - x) * 0.1); 
-			hs_y_to = ((hs_inst.y - y) * 0.1);		
+			hs_x_to = ((hs_inst.x - x) * 0.07); 
+			hs_y_to = ((hs_inst.y - y) * 0.07);		
 			
 			if (!place_meeting(x + hs_x_to, y, obj_collider)) {
 				x += hs_x_to; 	
@@ -172,6 +172,16 @@ switch(state) {
 			facing_dir = 1; 	
 		} 
 	
+	#endregion
+	
+	#region Flip Player
+		
+		if (facing_dir != 0) {
+			image_xscale = facing_dir; 
+		} else {
+			image_xscale = 1; 	
+		}
+		
 	#endregion
 
 #endregion
