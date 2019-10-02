@@ -159,14 +159,6 @@
             }
         },
         {
-            "Key": "6e2a89e2-8cd0-49a1-a6b1-d0901f011126",
-            "Value": {
-                "id": "f1625e8e-069f-426e-bb0e-d4a41906470a",
-                "resourcePath": "objects\\obj_hookshot\\obj_hookshot.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "7e5c3a09-936b-44cd-9f48-8d153591172c",
             "Value": {
                 "id": "490f6321-dae7-4d6e-bf80-e08218529ff2",

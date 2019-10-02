@@ -16,102 +16,149 @@
 
 #endregion
 
-#region Basic Movement
+//Player States
+switch(state) { 
 
-	#region Move Calculations 
-
-		move_dir_x = key_right - key_left; 
+	case "normal": 
 	
-		if ((move_dir_x != 0) && (current_move_dir_x == move_dir_x)) {
-			if (move_speed < move_speed_max) {
-				move_speed += move_speed_acceleration; 
-			} else {
-				move_speed = move_speed_max; 	
-			}
-		} else {
-			move_speed = 0;
+		#region Movement
 
-		}
-	
-		current_move_dir_x = move_dir_x; 
-	
-		x_speed = ((move_speed * move_dir_x)* delta_t); 
+			#region Move Calculations 
 
-	#endregion
+				move_dir_x = key_right - key_left; 
 	
-	#region Gravity && onground check
+				if ((move_dir_x != 0) && (current_move_dir_x == move_dir_x)) {
+					if (move_speed < move_speed_max) {
+						move_speed += move_speed_acceleration; 
+					} else {
+						move_speed = move_speed_max; 	
+					}
+				} else {
+					move_speed = 0;
 
-		if (!place_meeting(x, y + 1, obj_collider)) {
-			on_ground = false; 
-			grav = grav_base; 
-			if (grav < grav_max) {
-				grav += grav_acceleration; 	
-			}
-			y_speed += grav * delta_t; 
-		} else {
-			on_ground = true; 	
-			wall_jump = 0; 
-		}
-
-	#endregion
-	
-	#region Jumping
-
-		if (place_meeting(x, y + 1, obj_collider)) {
-			jumps = jumps_max; 	
-		}
-		if ((key_jump) && (jumps > 0)) {
-			jumps -= 1; 
-			y_speed = -jump_impulse * delta_t; 
-		}
-		if ((y_speed < 0) && (!key_jump_held)) {
-			y_speed += grav * delta_t; 	
-		}
-
-	#endregion
-	
-	#region Wall Jumping 
-	
-		if (!on_ground) {
-			if ((place_meeting(x + 1, y, obj_collider)) || (place_meeting(x - 1, y, obj_collider))) { 	
-				if (wall_jump == 0) {
-					//@todo Make Player Kick off the wall instead of just gliding up it. 
-					jumps += 1; 	
-					wall_jump = 1; 
 				}
-			}	
-		}
 	
-	#endregion
+				current_move_dir_x = move_dir_x; 
 	
-	
-	#region Collisions Detection
+				x_speed = ((move_speed * move_dir_x)* delta_t); 
 
-		//Horizontal 
-		if (!place_meeting(x + x_speed, y, obj_collider)) {
-			x += x_speed; 	
-		} else {
-			while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
-				x += sign(x_speed); 	
-			}
-		}
+			#endregion
 	
-		//Vertical
-		if (!place_meeting(x, y + y_speed, obj_collider)) {
-			y += y_speed; 	
-		} else {
-			while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
-				y += sign(y_speed);	
+			#region Gravity && onground check
+
+				if (!place_meeting(x, y + 1, obj_collider)) {
+					on_ground = false; 
+					grav = grav_base; 
+					if (grav < grav_max) {
+						grav += grav_acceleration; 	
+					}
+					y_speed += grav * delta_t; 
+				} else {
+					on_ground = true; 	
+					wall_jump = 0; 
+				}
+
+			#endregion
+	
+			#region Jumping
+
+				if (place_meeting(x, y + 1, obj_collider)) {
+					jumps = jumps_max; 	
+				}
+				if ((key_jump) && (jumps > 0)) {
+					jumps -= 1; 
+					y_speed = -jump_impulse * delta_t; 
+				}
+				if ((y_speed < 0) && (!key_jump_held)) {
+					y_speed += grav * delta_t; 	
+				}
+
+			#endregion
+	
+			#region Wall Jumping 
+	
+				if (!on_ground) {
+					if ((place_meeting(x + 1, y, obj_collider)) || (place_meeting(x - 1, y, obj_collider))) { 	
+						if (wall_jump == 0) {
+							//@todo Make Player Kick off the wall instead of just gliding up it. 
+							jumps += 1; 	
+							wall_jump = 1; 
+						}
+					}	
+				}
+	
+			#endregion
+			
+			#region Collisions Detection
+
+				//Horizontal 
+				if (!place_meeting(x + x_speed, y, obj_collider)) {
+					x += x_speed; 	
+				} else {
+					while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
+						x += sign(x_speed); 	
+					}
+				}
+	
+				//Vertical
+				if (!place_meeting(x, y + y_speed, obj_collider)) {
+					y += y_speed; 	
+				} else {
+					while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
+						y += sign(y_speed);	
+					}
+				}
+
+			#endregion
+			break;
+			
+	#endregion
+
+	case "hookshot": 
+		x_speed = 0; 
+		y_speed = 0; 
+		grav = 0; 
+	
+		hs_inst = instance_position(mouse_x, mouse_y, obj_hookshot_point); 
+		if (hs_inst != noone) {
+			hs_x_to = ((hs_inst.x - x) * 0.1); 
+			hs_y_to = ((hs_inst.y - y) * 0.1);		
+			
+			if (!place_meeting(x + hs_x_to, y, obj_collider)) {
+				x += hs_x_to; 	
+			} else {
+				state = "normal"; 	
 			}
+			
+			if (!place_meeting(x, y + hs_y_to, obj_collider)) {
+				y += hs_y_to; 	
+			} else {
+				state = "normal";	
+			}
+			
+		} else {
+			state = "normal"; 	
 		}
 
-	#endregion
-	
-#endregion
+}
 
 #region HookShot
 
-	//@TODO
+	if ((state != "hookshot") && (hs_cd >= 1)) {
+		hs_cd--; 
+		show_debug_message(hs_cd); 
+	}
+
+
+	if (mouse_check_button_pressed(mb_right)) && (hs_cd <= 0) {
+		hs_inst = noone; 
+		if (place_meeting(mouse_x, mouse_y, obj_hookshot_point)) {
+			state = "hookshot"; 
+			hs_cd = hs_cd_base; 
+		}
+	} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {
+		state = "normal"; 	
+	}
 
 #endregion
 

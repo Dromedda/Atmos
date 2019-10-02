@@ -32,7 +32,12 @@
 	
 	#region Hookshot
 	
-		//@TODO
+		hs_inst = noone; 
+		hs_cd = 10;
+		hs_cd_base = hs_cd; 
+		
+		hs_x_to = 0; 
+		hs_y_to = 0; 
 	
 	#endregion
 	
@@ -41,5 +46,12 @@
 		facing_dir = 0; 
 	
 	#endregion
+	
+	state = "normal";
+	/*
+	DIFFERENT STATES: 
+	"normal" 
+	"hookshot"	
+	*/
 
 #endregion
