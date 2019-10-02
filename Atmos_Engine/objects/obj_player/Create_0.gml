@@ -2,7 +2,7 @@
 
 	#region Movement
 	
-		move_speed = 2.8; 
+		move_speed = 2.2; 
 		move_speed_acceleration = 0.4; 
 		move_speed_max = move_speed; 
 		
