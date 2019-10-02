@@ -25,13 +25,14 @@
 		on_ground = false; 
 		
 		wall_jump = 0; 
+		
+		 
 	
 	#endregion
 	
-	#region Grappling Hook
+	#region Hookshot
 	
-		gp_cd = 30; 
-		gp_deployed = false; 
+		//@TODO
 	
 	#endregion
 	

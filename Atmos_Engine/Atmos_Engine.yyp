@@ -63,6 +63,14 @@
             }
         },
         {
+            "Key": "288fb5d0-6571-4117-abad-e0eb44d2330e",
+            "Value": {
+                "id": "8408801a-135e-415a-909f-2a139d24986e",
+                "resourcePath": "objects\\obj_hookshot_point\\obj_hookshot_point.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "32247504-3e84-4120-8ffd-b7828de47839",
             "Value": {
                 "id": "5b0f4b9e-adff-49de-ba76-d31135d21806",
@@ -92,6 +100,14 @@
                 "id": "6ed117e5-7878-40b4-ad76-55cfe8b57d38",
                 "resourcePath": "views\\3e4e391a-1d29-48b5-b8d8-d00a936d3879.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "40e82133-4115-4697-a689-a3e4c874e365",
+            "Value": {
+                "id": "fdc43fab-17d9-431b-8b4a-c316d331a20e",
+                "resourcePath": "sprites\\spr_hookshot_point\\spr_hookshot_point.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -146,7 +162,7 @@
             "Key": "6e2a89e2-8cd0-49a1-a6b1-d0901f011126",
             "Value": {
                 "id": "f1625e8e-069f-426e-bb0e-d4a41906470a",
-                "resourcePath": "objects\\obj_grappling_hook_collider\\obj_grappling_hook_collider.yy",
+                "resourcePath": "objects\\obj_hookshot\\obj_hookshot.yy",
                 "resourceType": "GMObject"
             }
         },

@@ -2,7 +2,7 @@
     "id": "6e2a89e2-8cd0-49a1-a6b1-d0901f011126",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "obj_grappling_hook_collider",
+    "name": "obj_hookshot",
     "eventList": [
         {
             "id": "3c4f761a-711d-4e3e-92d0-5820d920f760",

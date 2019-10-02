@@ -73,14 +73,14 @@
 	#region Wall Jumping 
 	
 		if (!on_ground) {
-			if (place_meeting(x + (1 * move_dir_x), y, obj_collider)) {
+			if ((place_meeting(x + 1, y, obj_collider)) || (place_meeting(x - 1, y, obj_collider))) { 	
 				if (wall_jump == 0) {
+					//@todo Make Player Kick off the wall instead of just gliding up it. 
 					jumps += 1; 	
 					wall_jump = 1; 
 				}
 			}	
 		}
-	
 	
 	#endregion
 	
@@ -109,52 +109,10 @@
 	
 #endregion
 
-#region Grappling Hook
-/*
-	//GP Cooldown
-	if (gp_cd >= 1) {
-		gp_cd--; 	
-	}
-	
-	if (!gp_deployed) {
-		if ((key_c) && (gp_cd <= 0)) {
-			instance_create_layer(x, y, "Player", obj_grappling_hook_collider); 
-			gp_deployed = true; 
-		}
-	}
-	
-	//Move Towards The gp_collider
-	if ((instance_exists(obj_grappling_hook_collider)) && (gp_deployed)) {
-		if (obj_grappling_hook_collider.collider_collided) {
-			var x_to = obj_grappling_hook_collider.x; 
-			var y_to = obj_grappling_hook_collider.y; 
-			var x_spd, y_spd; 
-			
-			x_spd = ((x_to - x) / 5);  
-			y_spd = ((y_to - y) / 5);  
-		
-			//Horizontal 
-			if (!place_meeting(x + x_spd, y, obj_grappling_hook_collider)) {
-				x += x_spd; 	
-			} else {
-				while (!place_meeting(x + sign(x_spd), y, obj_grappling_hook_collider)) {
-					x += sign(x_spd); 	
-				}
-			}
-	
-			//Vertical
-			if (!place_meeting(x, y + y_spd, obj_grappling_hook_collider)) {
-				y += y_spd; 	
-			} else {
-				while (!place_meeting(x, y + sign(y_spd), obj_grappling_hook_collider)) {
-					y += sign(y_spd);	
-				}
-			}
-		
-		}
-	}
-	
-	*/
+#region HookShot
+
+	//@TODO
+
 #endregion
 
 #region Animations
