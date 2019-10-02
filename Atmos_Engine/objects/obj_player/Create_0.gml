@@ -18,9 +18,18 @@
 		grav_max = 1; 
 		grav_acceleration = 0.16; 
 		
+		move_dir_x = 0; 
+		
 		current_move_dir_x = 0; 
 
 		on_ground = false; 
+	
+	#endregion
+	
+	#region Grappling Hook
+	
+		gp_cd = 30; 
+		gp_deployed = false; 
 	
 	#endregion
 	
