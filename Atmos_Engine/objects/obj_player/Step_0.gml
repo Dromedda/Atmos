@@ -50,6 +50,7 @@
 			y_speed += grav * delta_t; 
 		} else {
 			on_ground = true; 	
+			wall_jump = 0; 
 		}
 
 	#endregion
@@ -68,6 +69,21 @@
 		}
 
 	#endregion
+	
+	#region Wall Jumping 
+	
+		if (!on_ground) {
+			if (place_meeting(x + (1 * move_dir_x), y, obj_collider)) {
+				if (wall_jump == 0) {
+					jumps += 1; 	
+					wall_jump = 1; 
+				}
+			}	
+		}
+	
+	
+	#endregion
+	
 	
 	#region Collisions Detection
 

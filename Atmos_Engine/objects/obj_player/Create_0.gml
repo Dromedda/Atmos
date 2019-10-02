@@ -16,13 +16,15 @@
 		grav = 0;
 		grav_base = 0.2; 
 		grav_max = 1; 
-		grav_acceleration = 0.16; 
+		grav_acceleration = 0.08; 
 		
 		move_dir_x = 0; 
 		
 		current_move_dir_x = 0; 
 
 		on_ground = false; 
+		
+		wall_jump = 0; 
 	
 	#endregion
 	
