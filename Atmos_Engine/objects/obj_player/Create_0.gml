@@ -11,11 +11,11 @@
 		
 		jumps = 0; 
 		jumps_max = 2; 
-		jump_impulse = 6; 
+		jump_impulse = 3.8; 
 
 		grav = 0;
-		grav_base = 0.2; 
-		grav_max = 1; 
+		grav_base = 0.1; 
+		grav_max = 0.4; 
 		grav_acceleration = 0.08; 
 		
 		move_dir_x = 0; 
@@ -33,7 +33,7 @@
 	#region Hookshot
 	
 		hs_inst = noone; 
-		hs_cd = 10;
+		hs_cd = 60;
 		hs_cd_base = hs_cd; 
 		
 		hs_x_to = 0; 
