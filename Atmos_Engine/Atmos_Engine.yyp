@@ -103,6 +103,14 @@
             }
         },
         {
+            "Key": "36ebf267-f633-4ff0-ad0f-6f39df02e775",
+            "Value": {
+                "id": "1064b518-e5c2-44e2-90a4-9650f867031f",
+                "resourcePath": "objects\\obj_camera_pos_controller\\obj_camera_pos_controller.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "38e6d464-bcde-4150-9d0f-5214bb3e19c4",
             "Value": {
                 "id": "e3ecfb77-3136-4ab2-807c-a33ed42e6c1a",
@@ -228,6 +236,14 @@
                 "id": "b6cdc686-5133-4e98-b352-27b14e689171",
                 "resourcePath": "views\\8485ad6d-efe5-434a-a731-013e832b93bd.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "9fc9ef4f-39c6-492d-8f36-2952bdd9a8e5",
+            "Value": {
+                "id": "272f4f84-b7fa-4e54-b7d4-efe1968606f7",
+                "resourcePath": "objects\\obj_camera\\obj_camera.yy",
+                "resourceType": "GMObject"
             }
         },
         {

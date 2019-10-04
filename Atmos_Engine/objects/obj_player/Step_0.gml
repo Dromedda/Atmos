@@ -78,15 +78,13 @@ switch(state) {
 	
 			#region Wall Jumping 
 	
-				if (!on_ground) {
+				if ((!on_ground) && (wall_jump == 0)) {
 					if ((place_meeting(x + 1, y, obj_collider)) || (place_meeting(x - 1, y, obj_collider))) { 	
-						if (wall_jump == 0) {
-							//@todo Make Player Kick off the wall instead of just gliding up it. 
-							jumps += 1; 	
-							wall_jump = 1; 
-						}
-					}	
-				}
+						//@todo Make Player Kick off the wall instead of just gliding up it. 
+						jumps += 1; 	
+						wall_jump = 1; 
+					}
+				}	
 	
 			#endregion
 			
@@ -136,8 +134,9 @@ switch(state) {
 	
 		hs_inst = instance_position(mouse_x, mouse_y, obj_hookshot_point); 
 		if (hs_inst != noone) {
-			hs_x_to = ((hs_inst.x - x) * 0.045); 
-			hs_y_to = ((hs_inst.y - y) * 0.045);		
+			hs_x_to = (((hs_inst.x + 16) - x) * 0.045); 
+			hs_y_to = (((hs_inst.y + 16) - y) * 0.045);		
+			
 			
 			if (!place_meeting(x + hs_x_to, y, obj_collider)) {
 				x += hs_x_to * delta_t; 	
@@ -154,7 +153,7 @@ switch(state) {
 		} else {
 			state = "normal"; 	
 		}
-
+		break; 
 }
 
 #region HookShot

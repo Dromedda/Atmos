@@ -25,6 +25,7 @@
 		on_ground = false; 
 		
 		wall_jump = 0; 
+		wall_jump_impulse = 8; 
 		
 		 
 	
