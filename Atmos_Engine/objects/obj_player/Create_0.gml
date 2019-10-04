@@ -14,7 +14,6 @@
 		jump_impulse = 2.6; 
 
 		grav = 0;
-		grav_base = 0.1; 
 		grav_base = 0.05; 
 		grav_max = 0.2; 
 		grav_acceleration = 0.05; 
