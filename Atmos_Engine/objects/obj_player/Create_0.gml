@@ -30,6 +30,13 @@
 	
 	#endregion
 	
+	#region Melee
+	
+		melee_cd = 30; 
+		melee_cd_base = melee_cd; 
+	
+	#endregion
+	
 	#region Hookshot
 	
 		hs_inst = noone; 

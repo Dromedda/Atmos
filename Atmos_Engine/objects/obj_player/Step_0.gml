@@ -7,6 +7,7 @@
 	var key_jump_held = keyboard_check(vk_space); 
 	
 	var key_c = mouse_check_button_pressed(mb_right); 
+	var key_l = mouse_check_button_pressed(mb_left); 
 
 #endregion
 
@@ -110,6 +111,20 @@ switch(state) {
 				}
 
 			#endregion
+			
+			#region Melee 
+			
+				if (melee_cd >= 1) {
+					melee_cd--; 	
+				}
+			
+				if ((key_l) && (melee_cd <= 0)) {
+					instance_create_layer(x, y, "Player", obj_player_melee); 
+					melee_cd = melee_cd_base; 
+				}
+			
+			#endregion
+			
 			break;
 			
 	#endregion
