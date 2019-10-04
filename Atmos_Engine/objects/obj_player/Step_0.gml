@@ -134,8 +134,8 @@ switch(state) {
 	
 		hs_inst = instance_position(mouse_x, mouse_y, obj_hookshot_point); 
 		if (hs_inst != noone) {
-			hs_x_to = (((hs_inst.x + 16) - x) * 0.045); 
-			hs_y_to = (((hs_inst.y + 16) - y) * 0.045);		
+			hs_x_to = (((hs_inst.x + 16) - x) * 0.02); 
+			hs_y_to = (((hs_inst.y + 16) - y) * 0.02);		
 			
 			
 			if (!place_meeting(x + hs_x_to, y, obj_collider)) {

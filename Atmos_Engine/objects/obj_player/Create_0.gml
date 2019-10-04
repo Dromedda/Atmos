@@ -11,12 +11,13 @@
 		
 		jumps = 0; 
 		jumps_max = 2; 
-		jump_impulse = 3.8; 
+		jump_impulse = 2.6; 
 
 		grav = 0;
 		grav_base = 0.1; 
-		grav_max = 0.4; 
-		grav_acceleration = 0.08; 
+		grav_base = 0.05; 
+		grav_max = 0.2; 
+		grav_acceleration = 0.05; 
 		
 		move_dir_x = 0; 
 		
@@ -24,10 +25,7 @@
 
 		on_ground = false; 
 		
-		wall_jump = 0; 
-		wall_jump_impulse = 8; 
-		
-		 
+		wall_jump = 0; 		 
 	
 	#endregion
 	
