@@ -11,6 +11,3 @@
 	y = cy; 
 
 #endregion
-
-show_debug_message(cx); 
-show_debug_message(cy); 
