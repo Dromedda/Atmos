@@ -140,13 +140,13 @@ switch(state) {
 			hs_y_to = ((hs_inst.y - y) * 0.045);		
 			
 			if (!place_meeting(x + hs_x_to, y, obj_collider)) {
-				x += hs_x_to; 	
+				x += hs_x_to * delta_t; 	
 			} else {
 				state = "normal"; 	
 			}
 			
 			if (!place_meeting(x, y + hs_y_to, obj_collider)) {
-				y += hs_y_to; 	
+				y += hs_y_to * delta_t; 	
 			} else {
 				state = "normal";	
 			}
