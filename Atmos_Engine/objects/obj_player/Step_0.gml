@@ -129,7 +129,7 @@ switch(state) {
 			
 			#endregion
 			
-			break;
+		break;
 			
 	#endregion
 
@@ -159,7 +159,7 @@ switch(state) {
 		} else {
 			state = "normal"; 	
 		}
-		break; 
+	break; 
 }
 
 #region HookShot
