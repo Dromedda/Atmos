@@ -24,7 +24,9 @@
 
 		on_ground = false; 
 		
-		wall_jump = 0; 		 
+		wall_jump = 0; 	
+		max_wall_jump = 2; 
+		wall_jumped = false; 
 	
 	#endregion
 	

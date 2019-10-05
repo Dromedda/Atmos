@@ -8,6 +8,6 @@
 #region Camera Pos 
 
 	x = cx; 
-	y = cy; 
-
+	y = cy;
+	
 #endregion

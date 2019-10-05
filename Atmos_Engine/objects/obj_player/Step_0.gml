@@ -78,13 +78,19 @@ switch(state) {
 	
 			#region Wall Jumping 
 	
-				if ((!on_ground) && (wall_jump == 0)) {
+				if ((!on_ground) && (wall_jump < max_wall_jump)) {
 					if ((place_meeting(x + 1, y, obj_collider)) || (place_meeting(x - 1, y, obj_collider))) { 	
 						//@todo Make Player Kick off the wall instead of just gliding up it. 
-						jumps += 1; 	
-						wall_jump = 1; 
+						if (key_jump) && (!wall_jumped) {
+							wall_jumped = true; 
+						}
+						if (wall_jumped) && (wall_jump < max_wall_jump) {
+							jumps += 1; 	
+							wall_jump += 1;
+							wall_jumped = false; 
+						}
 					}
-				}	
+				} 
 	
 			#endregion
 			
