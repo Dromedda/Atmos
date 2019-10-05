@@ -16,9 +16,7 @@
 
 #region 
 
-cx = x + 288; 
-cy = y + 148; 
-
-
+	cx = x + 288; 
+	cy = y + 148; 
 
 #endregion
