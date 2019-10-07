@@ -50,13 +50,16 @@ switch(state) {
 				if (!place_meeting(x, y + 1, obj_collider)) {
 					on_ground = false; 
 					grav = grav_base; 
+					
 					if (grav < grav_max) {
 						grav += grav_acceleration; 	
 					}
+					
 					y_speed += grav * delta_t; 
 				} else {
 					on_ground = true; 	
 					wall_jump = 0; 
+					glide_timer = glide_timer_base; 
 				}
 
 			#endregion

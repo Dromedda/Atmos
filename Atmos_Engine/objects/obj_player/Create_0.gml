@@ -2,28 +2,40 @@
 
 	#region Movement
 	
+		//Movement
 		move_speed = 2.2; 
 		move_speed_acceleration = 0.4; 
 		move_speed_max = move_speed; 
 		
+		//Movement Application 
 		x_speed = 0; 
 		y_speed = 0; 
 		
+		//Jumping
 		jumps = 0; 
 		jumps_max = 2; 
 		jump_impulse = 2.6; 
 
+		//Gravity
 		grav = 0;
 		grav_base = 0.05; 
 		grav_max = 0.2; 
 		grav_acceleration = 0.05; 
 		
+		//Glide
+		glide_grav = 0.04; 
+		glide_timer = 60; 
+		glide_timer_base = glide_timer; 
+		
+		//Move Direction 
 		move_dir_x = 0; 
 		
 		current_move_dir_x = 0; 
-
+		
+		//On ground
 		on_ground = false; 
 		
+		//Wall jump
 		wall_jump = 0; 	
 		max_wall_jump = 2; 
 		wall_jumped = false; 
