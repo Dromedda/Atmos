@@ -19,8 +19,8 @@
 		//Gravity
 		grav = 0;
 		grav_base = 0.05; 
-		grav_max = 0.2; 
-		grav_acceleration = 0.05; 
+		grav_max = 0.4; 
+		grav_acceleration = 0.1; 
 		
 		//Glide
 		glide_grav = 0.04; 
@@ -57,6 +57,8 @@
 		
 		hs_x_to = 0; 
 		hs_y_to = 0; 
+		
+		hs_speed = 0.04; 
 	
 	#endregion
 	
@@ -66,10 +68,10 @@
 	
 	#endregion
 	
-	state = "normal";
+	state = "standard";
 	/*
 	DIFFERENT STATES: 
-	"normal" 
+	"standard" 
 	"hookshot"	
 	*/
 

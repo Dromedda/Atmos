@@ -20,7 +20,7 @@
 //Player States
 switch(state) { 
 
-	case "normal": 
+	case "standard": 
 	
 		#region Movement
 
@@ -143,24 +143,24 @@ switch(state) {
 	
 		hs_inst = instance_position(mouse_x, mouse_y, obj_hookshot_point); 
 		if (hs_inst != noone) {
-			hs_x_to = (((hs_inst.x + 16) - x) * 0.02); 
-			hs_y_to = (((hs_inst.y + 16) - y) * 0.02);		
+			hs_x_to = (((hs_inst.x + 16) - x) * hs_speed); 
+			hs_y_to = (((hs_inst.y + 16) - y) * hs_speed);		
 			
 			
 			if (!place_meeting(x + hs_x_to, y, obj_collider)) {
 				x += hs_x_to * delta_t; 	
 			} else {
-				state = "normal"; 	
+				state = "standard"; 	
 			}
 			
 			if (!place_meeting(x, y + hs_y_to, obj_collider)) {
 				y += hs_y_to * delta_t; 	
 			} else {
-				state = "normal";	
+				state = "standard";	
 			}
 			
 		} else {
-			state = "normal"; 	
+			state = "standard"; 	
 		}
 	break; 
 }
@@ -180,7 +180,7 @@ switch(state) {
 			hs_cd = hs_cd_base; 
 		}
 	} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {
-		state = "normal"; 	
+		state = "standard"; 	
 	}
 
 #endregion
