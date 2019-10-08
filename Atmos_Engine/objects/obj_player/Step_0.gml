@@ -3,6 +3,9 @@
 	var key_left  = keyboard_check(ord("A")); 
 	var key_right = keyboard_check(ord("D")); 
 	
+	var key_down = keyboard_check(ord("S")); 
+	var key_down_rel = keyboard_check_released(ord("S")); 
+	
 	var key_jump      = keyboard_check_pressed(vk_space); 
 	var key_jump_held = keyboard_check(vk_space); 
 	
@@ -130,6 +133,34 @@ switch(state) {
 					melee_cd = melee_cd_base; 
 				}
 			
+			#endregion
+			
+			#region 
+			
+				if ((key_down) && (!place_meeting(x + ((sprite_get_width(sprite_index)/2)), y, obj_collider))) {
+					if (!place_meeting(x - ((sprite_get_width(sprite_index)/2)), y, obj_collider)) {
+						ducking = true; 
+					}
+				} else if ((key_down_rel) && (ducking)) {
+					if (!place_meeting(x, y - (sprite_get_height(sprite_index)/2), obj_collider)) {
+						ducking = false;
+						y -= (sprite_get_height(sprite_index)/2); 
+					}	 	
+				}
+				
+				if (ducking) {
+					image_angle = 90;
+					if (on_ground) {
+						move_speed_max = ducking_move_speed; 	
+					} else {
+						move_speed_max = move_speed_max_org; 	
+					}
+				} else if (!ducking) {
+					image_angle = 0; 
+					move_speed_max = move_speed_max_org; 
+					
+				}
+				
 			#endregion
 			
 		break;

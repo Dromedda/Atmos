@@ -6,6 +6,7 @@
 		move_speed = 2.2; 
 		move_speed_acceleration = 0.4; 
 		move_speed_max = move_speed; 
+		move_speed_max_org = move_speed_max; 
 		
 		//Movement Application 
 		x_speed = 0; 
@@ -59,6 +60,13 @@
 		hs_y_to = 0; 
 		
 		hs_speed = 0.04; 
+	
+	#endregion
+	
+	#region Ducking 
+	
+		ducking = false; 
+		ducking_move_speed = (move_speed_max * 0.5); 
 	
 	#endregion
 	
