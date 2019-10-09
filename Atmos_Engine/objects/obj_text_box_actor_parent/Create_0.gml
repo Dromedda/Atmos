@@ -3,7 +3,7 @@
 	my_text_box = noone;
 	
 	can_interact = false; 
-	
+
 #endregion
 
 #region Narration

@@ -12,7 +12,6 @@
 				my_text_box = instance_create_layer(0, 0, "TextBoxLayer", obj_textbox); 
 				my_text_box.creator = self; 
 				my_text_box.text_to_draw = dialogue;
-				
 			}
 			
 		} else {

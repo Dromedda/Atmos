@@ -10,6 +10,13 @@
 
 #endregion 
 
+#region Pos Variables 
+
+	x_pos = 0; 
+	y_pos = (360 - (sprite_get_height(spr_text_box_background))); 
+
+#endregion
+
 #region Setup Variables 
 
 	page = 0; 
@@ -17,5 +24,12 @@
 	creator = noone;  
 	
 	writing_speed = 5; 
+
+#endregion
+
+#region Apply Pos Vars
+
+	x = x_pos; 
+	y = y_pos; 
 
 #endregion
