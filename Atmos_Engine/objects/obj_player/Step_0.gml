@@ -150,7 +150,7 @@ switch(state) {
 				
 				if (ducking) {
 					image_angle = 90;
-					if (on_ground) {
+					if (on_ground) { //@note Maybe keep the initial x_speed and reduce it until it matches Ducking Movespeed(?). 
 						move_speed_max = ducking_move_speed; 	
 					} else {
 						move_speed_max = move_speed_max_org; 	
