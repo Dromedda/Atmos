@@ -73,6 +73,7 @@
 	#region Animations 
 	
 		facing_dir = 0; 
+		anim_state = "idle"; 
 	
 	#endregion
 	

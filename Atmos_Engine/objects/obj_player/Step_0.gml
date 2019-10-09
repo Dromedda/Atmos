@@ -237,5 +237,29 @@ switch(state) {
 		}
 		
 	#endregion
+	
+	#region Animation States
+	
+		if ((on_ground) && (x_speed != 0)) {
+			anim_state = "run"; 	
+		} else if ((on_ground) && (x_speed == 0)) {
+			anim_state = "idle"; 	
+		} else {
+			anim_state = "unknown"; 	
+		}
+		
+		switch(anim_state) {
+			case "run": 
+				sprite_index = spr_player_run; 
+				break; 
+			case "idle": 
+				sprite_index = spr_player_idle; 
+				break; 
+			case "unknown": 
+				sprite_index = spr_player_static; 
+				break; 
+		}
+	
+	#endregion
 
 #endregion
