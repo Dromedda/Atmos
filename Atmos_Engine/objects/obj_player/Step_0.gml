@@ -300,13 +300,24 @@ switch(state) {
 	
 	#region Animation States
 	
-		if ((on_ground) && (x_speed != 0)) {
-			anim_state = "run"; 	
-		} else if ((on_ground) && (x_speed == 0)) {
-			anim_state = "idle"; 	
-		} else {
-			anim_state = "unknown"; 	
-		}
+		if (state == "standard") {
+			//Imploment Jumping Sprite
+			if ((on_ground) && (x_speed != 0)) {
+				anim_state = "run"; 	
+			} else if ((on_ground) && (x_speed == 0)) {
+				anim_state = "idle"; 	
+			} else {
+				anim_state = "unknown"; 	
+			}
+		} else if (state == "topdown") {
+			if ((x_speed != 0) ||(y_speed != 0)) {
+				anim_state = "run"; 
+			} else if ((x_speed == 0) && (y_speed == 0)) {
+				anim_state = "idle"; 	
+			} else {
+				anim_state = "unknown"; 	
+			}
+		}	
 		
 		switch(anim_state) {
 			case "run": 
