@@ -30,6 +30,6 @@
 #region Apply Pos Vars
 
 	x = x_pos; 
-	y = y_pos; 
+	y = y_pos;  
 
 #endregion

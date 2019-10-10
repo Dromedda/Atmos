@@ -6,6 +6,8 @@
 	var key_down = keyboard_check(ord("S")); 
 	var key_down_rel = keyboard_check_released(ord("S")); 
 	
+	var key_up = keyboard_check(ord("W")); 
+	
 	var key_jump      = keyboard_check_pressed(vk_space); 
 	var key_jump_held = keyboard_check(vk_space); 
 	
@@ -193,25 +195,83 @@ switch(state) {
 		} else {
 			state = "standard"; 	
 		}
-	break; 
+		break; 
+		
+	case "topdown": 
+			move_dir_x = key_right - key_left; 
+			move_dir_y = key_down - key_up; 
+			
+			if ((move_dir_x != 0) && (move_dir_y != 0)) {
+				move_speed_max = move_speed_max_diag; 
+			} else {
+				move_speed_max = move_speed_max_org; 	
+			}
+			
+			if (((move_dir_x != 0) ||(move_dir_y != 0)) && ((current_move_dir_x == move_dir_x) ||(current_move_dir_y == move_dir_y))) {
+				if (move_speed < move_speed_max) {
+					move_speed += move_speed_acceleration; 
+				} else {
+					move_speed = move_speed_max; 	
+				}	
+			}
+			
+			x_speed = ((move_speed_max * move_dir_x) * delta_t); 
+			y_speed = ((move_speed_max * move_dir_y) * delta_t); 
+			
+			current_move_dir_x = move_dir_x; 
+			current_move_dir_y = move_dir_y; 
+			
+			#region Collisions Detection
+
+				//Horizontal 
+				if (!place_meeting(x + x_speed, y, obj_collider)) {
+					x += x_speed; 	
+				} else {
+					while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
+						x += sign(x_speed); 	
+					}
+				}
+	
+				//Vertical
+				if (!place_meeting(x, y + y_speed, obj_collider)) {
+					y += y_speed; 	
+				} else {
+					while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
+						y += sign(y_speed);	
+					}
+				}
+
+			#endregion
+
+		break; 
 }
+
+#region TopDown Movement 
+
+	if (room == rm_hub) {
+		state = "topdown"; 	
+	}
+
+#endregion
 
 #region HookShot
 
-	if ((state != "hookshot") && (hs_cd >= 1)) {
-		hs_cd--; 
-		show_debug_message(hs_cd); 
-	}
-
-
-	if (mouse_check_button_pressed(mb_right)) && (hs_cd <= 0) {
-		hs_inst = noone; 
-		if (place_meeting(mouse_x, mouse_y, obj_hookshot_point)) {
-			state = "hookshot"; 
-			hs_cd = hs_cd_base; 
+	if (room != rm_hub) {
+		if ((state != "hookshot") && (hs_cd >= 1)) {
+			hs_cd--; 
+			show_debug_message(hs_cd); 
 		}
-	} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {
-		state = "standard"; 	
+
+
+		if (mouse_check_button_pressed(mb_right)) && (hs_cd <= 0) {
+			hs_inst = noone; 
+			if (place_meeting(mouse_x, mouse_y, obj_hookshot_point)) {
+				state = "hookshot"; 
+				hs_cd = hs_cd_base; 
+			}
+		} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {
+			state = "standard"; 	
+		}
 	}
 
 #endregion
