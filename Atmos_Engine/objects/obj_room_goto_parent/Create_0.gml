@@ -1,5 +1,5 @@
 #region Variables 
 
-	goto_room = rm_test; 
+	goto_room = rm_test;
 
 #endregion
