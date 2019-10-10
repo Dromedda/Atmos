@@ -12,8 +12,8 @@
 
 #region Pos Variables 
 
-	x_pos = 0; 
-	y_pos = (360 - (sprite_get_height(spr_text_box_background))); 
+	x_pos = (obj_camera.x - (320));   
+	y_pos = (obj_camera.y + (sprite_get_height(spr_text_box_background) - 60)); 
 
 #endregion
 
