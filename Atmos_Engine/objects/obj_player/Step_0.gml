@@ -180,13 +180,13 @@ switch(state) {
 			hs_y_to = (((hs_inst.y + 16) - y) * hs_speed);		
 			
 			
-			if (!place_meeting(x + hs_x_to, y, obj_collider)) {
+			if (!place_meeting(x + (hs_x_to * 1.01), y, obj_collider)) {
 				x += hs_x_to * delta_t; 	
 			} else {
 				state = "standard"; 	
 			}
 			
-			if (!place_meeting(x, y + hs_y_to, obj_collider)) {
+			if (!place_meeting(x, y + (hs_y_to * 1.01), obj_collider)) {
 				y += hs_y_to * delta_t; 	
 			} else {
 				state = "standard";	
@@ -302,7 +302,9 @@ switch(state) {
 	
 		if (state == "standard") {
 			//Imploment Jumping Sprite
-			if ((on_ground) && (x_speed != 0)) {
+			if (!on_ground) {
+				anim_state = "jump"; 
+			} else if ((on_ground) && (x_speed != 0)) {
 				anim_state = "run"; 	
 			} else if ((on_ground) && (x_speed == 0)) {
 				anim_state = "idle"; 	
@@ -325,6 +327,9 @@ switch(state) {
 				break; 
 			case "idle": 
 				sprite_index = spr_player_idle; 
+				break; 
+			case "jump":
+				sprite_index = spr_player_jump; 
 				break; 
 			case "unknown": 
 				sprite_index = spr_player_static; 

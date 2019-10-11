@@ -48,7 +48,7 @@
 	
 	#region Melee
 	
-		melee_cd = 30; 
+		melee_cd = 40; 
 		melee_cd_base = melee_cd; 
 	
 	#endregion
@@ -56,7 +56,7 @@
 	#region Hookshot
 	
 		hs_inst = noone; 
-		hs_cd = 60;
+		hs_cd = 6;
 		hs_cd_base = hs_cd; 
 		
 		hs_x_to = 0; 

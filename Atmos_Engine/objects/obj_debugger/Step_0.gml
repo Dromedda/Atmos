@@ -1,4 +1,4 @@
-#region Goto Room
+  #region Hotkeys
 
 	if (keyboard_check(vk_alt)) {
 		if (keyboard_check_pressed(ord("1"))) {
