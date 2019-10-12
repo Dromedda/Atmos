@@ -34,7 +34,8 @@
         "9470e05d-1677-4148-95b7-f6ac583c8e3f",
         "be3c821b-9a7e-4d19-b3c5-59fbcb0ebefa",
         "4cd1f8ee-c638-44c2-bb2b-d45e687f2f35",
-        "de449217-fc59-4f12-80d4-5c6f8f871ad0"
+        "de449217-fc59-4f12-80d4-5c6f8f871ad0",
+        "25a01094-0e9a-4fb3-be4f-43bd5724c20c"
     ],
     "IsDnD": false,
     "layers": [
@@ -118,9 +119,35 @@
         },
         {
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
+            "name": "Enemies",
+            "id": "732aaff4-0ad5-4923-90ca-cfdf740b43c0",
+            "depth": 300,
+            "grid_x": 16,
+            "grid_y": 16,
+            "hierarchyFrozen": false,
+            "hierarchyVisible": true,
+            "inheritLayerDepth": false,
+            "inheritLayerSettings": false,
+            "inheritSubLayers": false,
+            "inheritVisibility": false,
+            "instances": [
+{"name": "inst_56F91A65","id": "25a01094-0e9a-4fb3-be4f-43bd5724c20c","colour": { "Value": 4294967295 },"creationCodeFile": "","creationCodeType": "","ignore": false,"imageIndex": 0,"imageSpeed": 1,"inheritCode": false,"inheritItemSettings": false,"IsDnD": false,"m_originalParentID": "00000000-0000-0000-0000-000000000000","m_serialiseFrozen": false,"modelName": "GMRInstance","name_with_no_file_rename": "inst_56F91A65","objId": "152eaf8c-e7f6-44c7-b11f-1b6e12f09baf","properties": null,"rotation": 0,"scaleX": 1,"scaleY": 1,"mvc": "1.1","x": 512,"y": 336}
+            ],
+            "layers": [
+
+            ],
+            "m_parentID": "00000000-0000-0000-0000-000000000000",
+            "m_serialiseFrozen": false,
+            "modelName": "GMRInstanceLayer",
+            "mvc": "1.0",
+            "userdefined_depth": false,
+            "visible": true
+        },
+        {
+            "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "RoomGotoColliders",
             "id": "00c0df4b-8bb3-40c3-98ca-e7d35516484f",
-            "depth": 300,
+            "depth": 400,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -146,7 +173,7 @@
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "HS_POINTS",
             "id": "29e5f024-06eb-4542-a93d-04eda4a581bf",
-            "depth": 400,
+            "depth": 500,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -178,7 +205,7 @@
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Colliders",
             "id": "06296cc8-ab5d-4a45-999a-ac6aeafb896b",
-            "depth": 500,
+            "depth": 600,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,
@@ -218,7 +245,7 @@
             "__type": "GMRInstanceLayer_Model:#YoYoStudio.MVCFormat",
             "name": "Controllers",
             "id": "316de8b6-91e1-4fe9-b3e4-b246597559db",
-            "depth": 600,
+            "depth": 700,
             "grid_x": 640,
             "grid_y": 360,
             "hierarchyFrozen": false,
@@ -249,7 +276,7 @@
             "animationFPS": 15,
             "animationSpeedType": "0",
             "colour": { "Value": 4279834905 },
-            "depth": 700,
+            "depth": 800,
             "grid_x": 32,
             "grid_y": 32,
             "hierarchyFrozen": false,

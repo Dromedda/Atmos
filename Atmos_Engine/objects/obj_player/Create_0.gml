@@ -48,7 +48,7 @@
 	
 	#region Melee
 	
-		melee_cd = 40; 
+		melee_cd = 10; 
 		melee_cd_base = melee_cd; 
 	
 	#endregion
