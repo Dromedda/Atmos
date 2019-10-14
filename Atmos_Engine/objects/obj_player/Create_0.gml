@@ -63,6 +63,7 @@
 		hs_y_to = 0; 
 		
 		hs_speed = 0.04; 
+		hs_collisions_tolerance = 2; 
 	
 	#endregion
 	
@@ -84,7 +85,8 @@
 	/*
 	DIFFERENT STATES: 
 	"standard" 
-	"hookshot"	
+	"hookshot"
+	"topdown"
 	*/
 
 #endregion

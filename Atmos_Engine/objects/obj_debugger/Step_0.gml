@@ -10,7 +10,7 @@
 		if (keyboard_check_pressed(ord("R"))) {
 			room_restart(); 	
 		}
-		if (keyboard_check(vk_shift)) {
+		if (keyboard_check(vk_lcontrol)) {
 			if (keyboard_check_pressed(ord("R"))) {
 				game_restart(); 	
 			}

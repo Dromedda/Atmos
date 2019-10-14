@@ -180,13 +180,13 @@ switch(state) {
 			hs_y_to = (((hs_inst.y + 16) - y) * hs_speed);		
 			
 			
-			if (!place_meeting(x + (hs_x_to * 1.01), y, obj_collider)) {
+			if (!place_meeting(x + (hs_x_to * hs_collisions_tolerance), y, obj_collider)) {
 				x += hs_x_to * delta_t; 	
 			} else {
 				state = "standard"; 	
 			}
 			
-			if (!place_meeting(x, y + (hs_y_to * 1.01), obj_collider)) {
+			if (!place_meeting(x, y + (hs_y_to * hs_collisions_tolerance), obj_collider)) {
 				y += hs_y_to * delta_t; 	
 			} else {
 				state = "standard";	
@@ -266,8 +266,13 @@ switch(state) {
 		if (mouse_check_button_pressed(mb_right)) && (hs_cd <= 0) {
 			hs_inst = noone; 
 			if (place_meeting(mouse_x, mouse_y, obj_hookshot_point)) {
+				if (jumps <= 1) {
+					jumps += 1; 	
+				}
 				state = "hookshot"; 
 				hs_cd = hs_cd_base; 
+			} else { //@Todo Make Player Shoot Out hookshot in a 4way drection. 
+				
 			}
 		} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {
 			state = "standard"; 	
