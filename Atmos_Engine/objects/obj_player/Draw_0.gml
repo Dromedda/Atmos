@@ -1,3 +1,5 @@
+draw_self();
+
 #region Draw Hookshot Line 
 
 	if ((state == "hookshot") && (hs_inst != noone)) {
@@ -16,5 +18,3 @@
 	}
 	
 #endregion
-
-draw_self();
