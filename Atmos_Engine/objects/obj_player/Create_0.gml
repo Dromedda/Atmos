@@ -74,6 +74,14 @@
 	
 	#endregion
 	
+	#region Sprinting
+	
+		sprinting = false; 
+		sprinting_move_speed = (move_speed_max * 1.3); 
+		sprinting_image_speed = 1.75; 
+	
+	#endregion
+	
 	#region Animations 
 	
 		facing_dir = 0; 

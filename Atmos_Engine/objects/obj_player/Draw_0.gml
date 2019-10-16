@@ -13,8 +13,23 @@ draw_self();
 
 		for(var i = 0; i < line_len; i += line_width) //Run a loop so we draw every chain-segment
 		{
-		     draw_sprite_ext(spr_player_hookshot, 0, x + ( cos(line_ang) * i ) + ( cos(line_ang) * (line_width/2) ), (y - ( sin( line_ang ) * i )) + (sin( line_ang ) * (line_width/2) ), 1, 1, radtodeg(line_ang), c_white, 1);
+			gpu_set_tex_filter(true); 
+		    draw_sprite_ext(spr_player_hookshot, 0, x + ( cos(line_ang) * i ) + ( cos(line_ang) * (line_width/2) ), (y - ( sin( line_ang ) * i )) + (sin( line_ang ) * (line_width/2) ), 1, 1, radtodeg(line_ang), c_white, 1);
+			gpu_set_tex_filter(false); 
 		}
 	}
 	
+#endregion
+
+#region Sprinting
+
+	/*
+
+	if (sprinting) {
+		draw_sprite_ext(spr_player_run, -1, x - 4, y, facing_dir, 1, 0, c_white, 1);
+		draw_sprite_ext(spr_player_run, -1, x - 8, y, facing_dir, 1, 0, c_white, 1);
+	}
+	
+	*/
+
 #endregion

@@ -14,6 +14,8 @@
 	var key_c = mouse_check_button_pressed(mb_right); 
 	var key_l = mouse_check_button_pressed(mb_left); 
 
+	var key_lshft = keyboard_check(vk_lshift); 
+
 #endregion
 
 #region Delta Time
@@ -32,7 +34,7 @@ switch(state) {
 			#region Move Calculations 
 
 				move_dir_x = key_right - key_left; 
-	
+				
 				if ((move_dir_x != 0) && (current_move_dir_x == move_dir_x)) {
 					if (move_speed < move_speed_max) {
 						move_speed += move_speed_acceleration; 
@@ -137,7 +139,7 @@ switch(state) {
 			
 			#endregion
 			
-			#region 
+			#region Ducking
 			
 				if ((key_down) && (!place_meeting(x + ((sprite_get_width(sprite_index)/2)), y, obj_collider))) {
 					if (!place_meeting(x - ((sprite_get_width(sprite_index)/2)), y, obj_collider)) {
@@ -151,7 +153,11 @@ switch(state) {
 				}
 				
 				if (ducking) {
-					image_angle = 90;
+					if (x_speed > 0) {
+						image_angle = 90;
+					} else if (x_speed <= 0) {
+						image_angle = -90; 	
+					}
 					if (on_ground) { //@note Maybe keep the initial x_speed and reduce it until it matches Ducking Movespeed(?). 
 						move_speed_max = ducking_move_speed; 	
 					} else {
@@ -163,6 +169,24 @@ switch(state) {
 					
 				}
 				
+			#endregion
+			
+			#region Sprinting
+				
+				if ((key_lshft) && (!ducking) && (x_speed != 0)) {
+					show_debug_message("Sprinting"); 
+					sprinting = true; 
+					move_speed_max = sprinting_move_speed; 	
+					show_debug_message(move_speed_max); 
+				} else if (!ducking) {
+					show_debug_message("!Sprinting"); 
+					sprinting = false; 
+					move_speed_max = move_speed_max_org; 		
+				} else {
+					sprinting = false; 	
+				}
+				
+			
 			#endregion
 			
 		break;
@@ -242,6 +266,12 @@ switch(state) {
 				}
 
 			#endregion
+			
+			#region Dash
+			
+				//@todo Imploment Dasing in top down Mode
+			
+			#endregion
 
 		break; 
 }
@@ -283,6 +313,17 @@ switch(state) {
 
 #region Animations
 
+	#region Sprinting
+	
+		if (sprinting) {
+			image_speed = sprinting_image_speed; 
+		} else {
+			image_speed = 1; 	
+		}
+			
+			
+	#endregion
+	
 	#region Facing Dir
 	
 		if (x_speed < 0) {
