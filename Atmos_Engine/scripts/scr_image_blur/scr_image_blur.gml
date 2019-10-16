@@ -5,7 +5,7 @@
     length = argument0;
  
     if (length > 0) {
-        step = 3;
+        step = 2;
         dir = degtorad(argument1);
         px = cos(dir);
         py = -sin(dir);

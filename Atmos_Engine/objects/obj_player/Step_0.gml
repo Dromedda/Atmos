@@ -349,7 +349,11 @@ switch(state) {
 		if (state == "standard") {
 			//Imploment Jumping Sprite
 			if (!on_ground) {
-				anim_state = "jump"; 
+				if (y_speed < 0) {
+					anim_state = "jump_up"; 
+				} else if (y_speed >= 0) {
+					anim_state = "jump_down"; 	
+				}
 			} else if ((on_ground) && (x_speed != 0)) {
 				anim_state = "run"; 	
 			} else if ((on_ground) && (x_speed == 0)) {
@@ -374,8 +378,11 @@ switch(state) {
 			case "idle": 
 				sprite_index = spr_player_idle; 
 				break; 
-			case "jump":
-				sprite_index = spr_player_jump; 
+			case "jump_up":
+				sprite_index = spr_player_jump_up; 
+				break; 
+			case "jump_down": 
+				sprite_index = spr_player_jump_down; 
 				break; 
 			case "unknown": 
 				sprite_index = spr_player_static; 
