@@ -23,13 +23,12 @@ draw_self();
 
 #region Sprinting
 
-	/*
-
 	if (sprinting) {
-		draw_sprite_ext(spr_player_run, -1, x - 4, y, facing_dir, 1, 0, c_white, 1);
-		draw_sprite_ext(spr_player_run, -1, x - 8, y, facing_dir, 1, 0, c_white, 1);
+		if (facing_dir == -1) {
+			scr_image_blur(4, 0); 		
+		} else {
+			scr_image_blur(4, 180); 	
+		}
 	}
-	
-	*/
 
 #endregion
