@@ -621,14 +621,6 @@
                 "resourcePath": "sprites\\spr_player_hookshot\\spr_player_hookshot.yy",
                 "resourceType": "GMSprite"
             }
-        },
-        {
-            "Key": "ff778f92-6ba2-4a0a-997f-bbe912f9a45e",
-            "Value": {
-                "id": "0e5169da-441c-4e19-bc1e-637a33bb01ce",
-                "resourcePath": "objects\\obj_debugger\\obj_debugger.yy",
-                "resourceType": "GMObject"
-            }
         }
     ],
     "script_order": [
