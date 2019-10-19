@@ -1,11 +1,11 @@
 draw_self();
 
 #region Draw Hookshot Line 
-/*
+	
+	/*
 	if ((state == "hookshot") && (hs_inst != noone)) {
-		// This chain will be cast/drawn from object1!
-		x_dist = x - (hs_inst.x + 16); //Get X distance between both objects 
-		y_dist = y - (hs_inst.y + 16); //Get Y distance between both objects
+		x_dist = x - (hs_inst.x - 16); //Get X distance between both objects 
+		y_dist = y - (hs_inst.y + 16) //Get Y distance between both objects
 
 		line_width = sprite_get_width(spr_player_hookshot); //Your chain sprite here
 		line_len = abs(sqrt( sqr(x_dist) + sqr(y_dist) )); //Get the length of the entire chain.
@@ -18,8 +18,11 @@ draw_self();
 			gpu_set_tex_filter(false); 
 		}
 	}
-	
 	*/
+	
+	if ((state == "hookshot") && (hs_inst != noone)) {
+		draw_line(x, y, hs_inst.x, hs_inst.y); 	
+	}
 	
 #endregion
 
