@@ -25,9 +25,9 @@ draw_self();
 
 	if (sprinting) {
 		if (facing_dir == -1) {
-			scr_image_blur(4, 0); 		
+			scr_image_blur(16, 0); 		
 		} else {
-			scr_image_blur(4, 180); 	
+			scr_image_blur(16, 180); 	
 		}
 	}
 
