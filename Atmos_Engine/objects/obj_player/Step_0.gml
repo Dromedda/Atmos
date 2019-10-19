@@ -24,257 +24,261 @@
 
 #endregion
 
-//Player States
-switch(state) { 
+#region Player State
 
-	case "standard": 
+	//Player States
+	switch(state) { 
+
+		case "standard": 
 	
-		#region Movement
+			#region Movement
 
-			#region Move Calculations 
+				#region Move Calculations 
 
-				move_dir_x = key_right - key_left; 
+					move_dir_x = key_right - key_left; 
 				
-				if ((move_dir_x != 0) && (current_move_dir_x == move_dir_x)) {
+					if ((move_dir_x != 0) && (current_move_dir_x == move_dir_x)) {
+						if (move_speed < move_speed_max) {
+							move_speed += move_speed_acceleration; 
+						} else {
+							move_speed = move_speed_max; 	
+						}
+					} else {
+						move_speed = 0;
+
+					}
+	
+					current_move_dir_x = move_dir_x; 
+	
+					x_speed = ((move_speed * move_dir_x)* delta_t); 
+
+				#endregion
+	
+				#region Gravity && onground check
+
+					if (!place_meeting(x, y + 1, obj_collider)) {
+						on_ground = false; 
+						grav = grav_base; 
+					
+						if (grav < grav_max) {
+							grav += grav_acceleration; 	
+						}
+					
+						y_speed += grav * delta_t; 
+					} else {
+						on_ground = true; 	
+						wall_jump = 0; 
+						glide_timer = glide_timer_base; 
+					}
+
+				#endregion
+	
+				#region Jumping
+
+					if (place_meeting(x, y + 1, obj_collider)) {
+						jumps = jumps_max; 	
+					}
+					if ((key_jump) && (jumps > 0)) {
+						jumps -= 1; 
+						y_speed = -jump_impulse * delta_t; 
+					}
+					if ((y_speed < 0) && (!key_jump_held)) {
+						y_speed += grav * delta_t; 	
+					}
+
+				#endregion
+	
+				#region Wall Jumping 
+	
+					if ((!on_ground) && (wall_jump < max_wall_jump)) {
+						if ((place_meeting(x + 1, y, obj_collider)) || (place_meeting(x - 1, y, obj_collider))) { 	
+							//@todo Make Player Kick off the wall instead of just gliding up it. 
+							if (key_jump) && (!wall_jumped) {
+								wall_jumped = true; 
+							}
+							if (wall_jumped) && (wall_jump < max_wall_jump) {
+								jumps += 1; 	
+								wall_jump += 1;
+								wall_jumped = false; 
+							}
+						}
+					} 
+	
+				#endregion
+			
+				#region Collisions Detection
+
+					//Horizontal 
+					if (!place_meeting(x + x_speed, y, obj_collider)) {
+						x += x_speed; 	
+					} else {
+						while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
+							x += sign(x_speed); 	
+						}
+					}
+	
+					//Vertical
+					if (!place_meeting(x, y + y_speed, obj_collider)) {
+						y += y_speed; 	
+					} else {
+						while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
+							y += sign(y_speed);	
+						}
+					}
+
+				#endregion
+			
+				#region Melee 
+			
+					if (melee_cd >= 1) {
+						melee_cd--; 	
+					}
+			
+					if ((key_l) && (melee_cd <= 0)) {
+						instance_create_layer(x, y, "Player", obj_player_melee); 
+						melee_cd = melee_cd_base; 
+					}
+			
+				#endregion
+			
+				#region Ducking
+			
+					if ((key_down) && (!place_meeting(x + ((sprite_get_width(sprite_index)/2)), y, obj_collider))) {
+						if (!place_meeting(x - ((sprite_get_width(sprite_index)/2)), y, obj_collider)) {
+							ducking = true; 
+						}
+					} else if ((key_down_rel) && (ducking)) {
+						if (!place_meeting(x, y - (sprite_get_height(sprite_index)/2), obj_collider)) {
+							ducking = false;
+							y -= (sprite_get_height(sprite_index)/2); 
+						}	 	
+					}
+				
+					if (ducking) {
+						if (x_speed > 0) {
+							image_angle = 90;
+						} else if (x_speed <= 0) {
+							image_angle = -90; 	
+						}
+						if (on_ground) { //@note Maybe keep the initial x_speed and reduce it until it matches Ducking Movespeed(?). 
+							move_speed_max = ducking_move_speed; 	
+						} else {
+							move_speed_max = move_speed_max_org; 	
+						}
+					} else if (!ducking) {
+						image_angle = 0; 
+						move_speed_max = move_speed_max_org; 
+					
+					}
+				
+				#endregion
+			
+				#region Sprinting
+				
+					if ((key_lshft) && (!ducking) && (x_speed != 0)) {
+						show_debug_message("Sprinting"); 
+						sprinting = true; 
+						move_speed_max = sprinting_move_speed; 	
+						show_debug_message(move_speed_max); 
+					} else if (!ducking) {
+						show_debug_message("!Sprinting"); 
+						sprinting = false; 
+						move_speed_max = move_speed_max_org; 		
+					} else {
+						sprinting = false; 	
+					}
+				
+			
+				#endregion
+			
+			break;
+			
+		#endregion
+
+		case "hookshot": 
+			x_speed = 0; 
+			y_speed = 0; 
+			grav = 0; 
+	
+			hs_inst = instance_position(mouse_x, mouse_y, obj_hookshot_point); 
+			if (hs_inst != noone) {
+				hs_x_to = (((hs_inst.x + 16) - x) * hs_speed); 
+				hs_y_to = (((hs_inst.y + 16) - y) * hs_speed);		
+			
+			
+				if (!place_meeting(x + (hs_x_to * hs_collisions_tolerance), y, obj_collider)) {
+					x += hs_x_to * delta_t; 	
+				} else {
+					state = "standard"; 	
+				}
+			
+				if (!place_meeting(x, y + (hs_y_to * hs_collisions_tolerance), obj_collider)) {
+					y += hs_y_to * delta_t; 	
+				} else {
+					state = "standard";	
+				}
+			
+			} else {
+				state = "standard"; 	
+			}
+			break; 
+		
+		case "topdown": 
+				move_dir_x = key_right - key_left; 
+				move_dir_y = key_down - key_up; 
+			
+				if ((move_dir_x != 0) && (move_dir_y != 0)) {
+					move_speed_max = move_speed_max_diag; 
+				} else {
+					move_speed_max = move_speed_max_org; 	
+				}
+			
+				if (((move_dir_x != 0) ||(move_dir_y != 0)) && ((current_move_dir_x == move_dir_x) ||(current_move_dir_y == move_dir_y))) {
 					if (move_speed < move_speed_max) {
 						move_speed += move_speed_acceleration; 
 					} else {
 						move_speed = move_speed_max; 	
-					}
-				} else {
-					move_speed = 0;
-
+					}	
 				}
-	
+			
+				x_speed = ((move_speed_max * move_dir_x) * delta_t); 
+				y_speed = ((move_speed_max * move_dir_y) * delta_t); 
+			
 				current_move_dir_x = move_dir_x; 
-	
-				x_speed = ((move_speed * move_dir_x)* delta_t); 
-
-			#endregion
-	
-			#region Gravity && onground check
-
-				if (!place_meeting(x, y + 1, obj_collider)) {
-					on_ground = false; 
-					grav = grav_base; 
-					
-					if (grav < grav_max) {
-						grav += grav_acceleration; 	
-					}
-					
-					y_speed += grav * delta_t; 
-				} else {
-					on_ground = true; 	
-					wall_jump = 0; 
-					glide_timer = glide_timer_base; 
-				}
-
-			#endregion
-	
-			#region Jumping
-
-				if (place_meeting(x, y + 1, obj_collider)) {
-					jumps = jumps_max; 	
-				}
-				if ((key_jump) && (jumps > 0)) {
-					jumps -= 1; 
-					y_speed = -jump_impulse * delta_t; 
-				}
-				if ((y_speed < 0) && (!key_jump_held)) {
-					y_speed += grav * delta_t; 	
-				}
-
-			#endregion
-	
-			#region Wall Jumping 
-	
-				if ((!on_ground) && (wall_jump < max_wall_jump)) {
-					if ((place_meeting(x + 1, y, obj_collider)) || (place_meeting(x - 1, y, obj_collider))) { 	
-						//@todo Make Player Kick off the wall instead of just gliding up it. 
-						if (key_jump) && (!wall_jumped) {
-							wall_jumped = true; 
-						}
-						if (wall_jumped) && (wall_jump < max_wall_jump) {
-							jumps += 1; 	
-							wall_jump += 1;
-							wall_jumped = false; 
-						}
-					}
-				} 
-	
-			#endregion
+				current_move_dir_y = move_dir_y; 
 			
-			#region Collisions Detection
+				#region Collisions Detection
 
-				//Horizontal 
-				if (!place_meeting(x + x_speed, y, obj_collider)) {
-					x += x_speed; 	
-				} else {
-					while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
-						x += sign(x_speed); 	
-					}
-				}
-	
-				//Vertical
-				if (!place_meeting(x, y + y_speed, obj_collider)) {
-					y += y_speed; 	
-				} else {
-					while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
-						y += sign(y_speed);	
-					}
-				}
-
-			#endregion
-			
-			#region Melee 
-			
-				if (melee_cd >= 1) {
-					melee_cd--; 	
-				}
-			
-				if ((key_l) && (melee_cd <= 0)) {
-					instance_create_layer(x, y, "Player", obj_player_melee); 
-					melee_cd = melee_cd_base; 
-				}
-			
-			#endregion
-			
-			#region Ducking
-			
-				if ((key_down) && (!place_meeting(x + ((sprite_get_width(sprite_index)/2)), y, obj_collider))) {
-					if (!place_meeting(x - ((sprite_get_width(sprite_index)/2)), y, obj_collider)) {
-						ducking = true; 
-					}
-				} else if ((key_down_rel) && (ducking)) {
-					if (!place_meeting(x, y - (sprite_get_height(sprite_index)/2), obj_collider)) {
-						ducking = false;
-						y -= (sprite_get_height(sprite_index)/2); 
-					}	 	
-				}
-				
-				if (ducking) {
-					if (x_speed > 0) {
-						image_angle = 90;
-					} else if (x_speed <= 0) {
-						image_angle = -90; 	
-					}
-					if (on_ground) { //@note Maybe keep the initial x_speed and reduce it until it matches Ducking Movespeed(?). 
-						move_speed_max = ducking_move_speed; 	
+					//Horizontal 
+					if (!place_meeting(x + x_speed, y, obj_collider)) {
+						x += x_speed; 	
 					} else {
-						move_speed_max = move_speed_max_org; 	
+						while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
+							x += sign(x_speed); 	
+						}
 					}
-				} else if (!ducking) {
-					image_angle = 0; 
-					move_speed_max = move_speed_max_org; 
-					
-				}
-				
-			#endregion
-			
-			#region Sprinting
-				
-				if ((key_lshft) && (!ducking) && (x_speed != 0)) {
-					show_debug_message("Sprinting"); 
-					sprinting = true; 
-					move_speed_max = sprinting_move_speed; 	
-					show_debug_message(move_speed_max); 
-				} else if (!ducking) {
-					show_debug_message("!Sprinting"); 
-					sprinting = false; 
-					move_speed_max = move_speed_max_org; 		
-				} else {
-					sprinting = false; 	
-				}
-				
-			
-			#endregion
-			
-		break;
-			
-	#endregion
-
-	case "hookshot": 
-		x_speed = 0; 
-		y_speed = 0; 
-		grav = 0; 
 	
-		hs_inst = instance_position(mouse_x, mouse_y, obj_hookshot_point); 
-		if (hs_inst != noone) {
-			hs_x_to = (((hs_inst.x + 16) - x) * hs_speed); 
-			hs_y_to = (((hs_inst.y + 16) - y) * hs_speed);		
-			
-			
-			if (!place_meeting(x + (hs_x_to * hs_collisions_tolerance), y, obj_collider)) {
-				x += hs_x_to * delta_t; 	
-			} else {
-				state = "standard"; 	
-			}
-			
-			if (!place_meeting(x, y + (hs_y_to * hs_collisions_tolerance), obj_collider)) {
-				y += hs_y_to * delta_t; 	
-			} else {
-				state = "standard";	
-			}
-			
-		} else {
-			state = "standard"; 	
-		}
-		break; 
-		
-	case "topdown": 
-			move_dir_x = key_right - key_left; 
-			move_dir_y = key_down - key_up; 
-			
-			if ((move_dir_x != 0) && (move_dir_y != 0)) {
-				move_speed_max = move_speed_max_diag; 
-			} else {
-				move_speed_max = move_speed_max_org; 	
-			}
-			
-			if (((move_dir_x != 0) ||(move_dir_y != 0)) && ((current_move_dir_x == move_dir_x) ||(current_move_dir_y == move_dir_y))) {
-				if (move_speed < move_speed_max) {
-					move_speed += move_speed_acceleration; 
-				} else {
-					move_speed = move_speed_max; 	
-				}	
-			}
-			
-			x_speed = ((move_speed_max * move_dir_x) * delta_t); 
-			y_speed = ((move_speed_max * move_dir_y) * delta_t); 
-			
-			current_move_dir_x = move_dir_x; 
-			current_move_dir_y = move_dir_y; 
-			
-			#region Collisions Detection
-
-				//Horizontal 
-				if (!place_meeting(x + x_speed, y, obj_collider)) {
-					x += x_speed; 	
-				} else {
-					while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
-						x += sign(x_speed); 	
+					//Vertical
+					if (!place_meeting(x, y + y_speed, obj_collider)) {
+						y += y_speed; 	
+					} else {
+						while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
+							y += sign(y_speed);	
+						}
 					}
-				}
+
+				#endregion
+			
+				#region Dash
+			
+					//@todo Imploment Dasing in top down Mode
+			
+				#endregion
+
+			break; 
+	}
 	
-				//Vertical
-				if (!place_meeting(x, y + y_speed, obj_collider)) {
-					y += y_speed; 	
-				} else {
-					while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
-						y += sign(y_speed);	
-					}
-				}
-
-			#endregion
-			
-			#region Dash
-			
-				//@todo Imploment Dasing in top down Mode
-			
-			#endregion
-
-		break; 
-}
+#endregion
 
 #region TopDown Movement 
 
