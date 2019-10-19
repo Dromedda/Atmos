@@ -1,7 +1,7 @@
 draw_self();
 
 #region Draw Hookshot Line 
-
+/*
 	if ((state == "hookshot") && (hs_inst != noone)) {
 		// This chain will be cast/drawn from object1!
 		x_dist = x - (hs_inst.x + 16); //Get X distance between both objects 
@@ -18,6 +18,8 @@ draw_self();
 			gpu_set_tex_filter(false); 
 		}
 	}
+	
+	*/
 	
 #endregion
 

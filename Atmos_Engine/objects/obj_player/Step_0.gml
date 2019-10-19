@@ -11,8 +11,9 @@
 	var key_jump      = keyboard_check_pressed(vk_space); 
 	var key_jump_held = keyboard_check(vk_space); 
 	
-	var key_c = mouse_check_button_pressed(mb_right); 
-	var key_l = mouse_check_button_pressed(mb_left); 
+	var key_mbr_prsd = mouse_check_button_pressed(mb_right); 
+	var key_mbr_held = mouse_check_button(mb_right); 
+	var key_mbl_prsd = mouse_check_button_pressed(mb_left); 
 
 	var key_lshft = keyboard_check(vk_lshift); 
 
@@ -134,7 +135,7 @@
 						melee_cd--; 	
 					}
 			
-					if ((key_l) && (melee_cd <= 0)) {
+					if ((key_mbl_prsd) && (melee_cd <= 0)) {
 						instance_create_layer(x, y, "Player", obj_player_melee); 
 						melee_cd = melee_cd_base; 
 					}
@@ -200,11 +201,9 @@
 			y_speed = 0; 
 			grav = 0; 
 	
-			hs_inst = instance_position(mouse_x, mouse_y, obj_hookshot_point); 
 			if (hs_inst != noone) {
-				hs_x_to = (((hs_inst.x + 16) - x) * hs_speed); 
-				hs_y_to = (((hs_inst.y + 16) - y) * hs_speed);		
-			
+				hs_x_to = (((hs_inst.x) - x) * hs_speed); 
+				hs_y_to = (((hs_inst.y) - y) * hs_speed);		
 			
 				if (!place_meeting(x + (hs_x_to * hs_collisions_tolerance), y, obj_collider)) {
 					x += hs_x_to * delta_t; 	
@@ -291,13 +290,16 @@
 #region HookShot
 
 	if (room != rm_hub) {
+		
+		#region Old Sys
+		/*
 		if ((state != "hookshot") && (hs_cd >= 1)) {
 			hs_cd--; 
 			show_debug_message(hs_cd); 
 		}
 
 
-		if (mouse_check_button_pressed(mb_right)) && (hs_cd <= 0) {
+		if (key_c) && (hs_cd <= 0) {
 			hs_inst = noone; 
 			if (place_meeting(mouse_x, mouse_y, obj_hookshot_point)) {
 				if (jumps <= 1) {
@@ -311,6 +313,31 @@
 		} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {
 			state = "standard"; 	
 		}
+		*/
+		#endregion
+		
+		if ((state != "hookshot") && (hs_cd >= 1)) {
+			hs_cd--; 
+			show_debug_message(hs_cd); 
+		}
+		
+		if ((key_mbr_prsd) && (hs_cd <= 0) && (!instance_exists(obj_hs_collider))) {
+			instance_create_layer(x, y, "Player", obj_hs_collider);  
+			
+		}
+		
+		if (state == "hookshot") {
+			if (mouse_check_button_pressed(mb_right)) {
+				state = "standard";
+				if (jumps <= 1) {
+					jumps += 1; 	
+				}
+				instance_destroy(obj_hs_collider); 
+				hs_cd = hs_cd_base; 
+				hs_inst = noone; 
+			}
+		}
+		
 	}
 
 #endregion
@@ -394,5 +421,11 @@
 		}
 	
 	#endregion
+
+#endregion
+
+#region Debugging 
+
+	show_debug_message(state); 
 
 #endregion
