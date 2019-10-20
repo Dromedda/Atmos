@@ -10,8 +10,8 @@
 	
 	collided = false; 
 	
-	hs_x_range = 640;
-	hs_y_range = 360; 
+	hs_x_range = 1280;
+	hs_y_range = 720; 
 
 #endregion
 

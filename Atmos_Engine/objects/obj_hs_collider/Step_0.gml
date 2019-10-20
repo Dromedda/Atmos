@@ -36,13 +36,26 @@
 #region Collided
 
 	if (collided) {
+		if (mouse_check_button(mb_right)) {
 			obj_player.state = "hookshot"; 
 			obj_player.hs_inst = self; 
-	}
+			if (obj_player.jumps <= 1) {
+				obj_player.jumps += 1; 	
+			}
+		} else {
+			obj_player.state = "standard"; 
+			obj_player.hs_inst = noone; 
+			instance_destroy(self); 	
+		}
+	} 
 
 #endregion
 
 #region Failsafe 
+
+	if (!mouse_check_button(mb_right)) {
+		instance_destroy(self); 	
+	}
 
 	hs_x_rng = (hs_x_range / 2); 
 	hs_y_rng = (hs_y_range / 2); 
