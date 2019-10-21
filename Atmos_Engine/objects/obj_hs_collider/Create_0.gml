@@ -6,7 +6,7 @@
 	x_speed = 0; 
 	y_speed = 0; 
 	
-	move_speed = 8; 
+	move_speed = 12; 
 	
 	collided = false; 
 	
@@ -19,6 +19,8 @@
 	
 	var mouse_angle = point_direction(x, y, mouse_x, mouse_y); 
 
+	//@todo Make this based on mouse position realtive to the window and not the player. 
+	//Split the screen into 4 triangles cenetered in the middle. centre = window_width/2 && window_height/2 
 	if ((mouse_angle > -45) && (mouse_angle < 45)) {
 		x_dir = 1; 
 		y_dir = 0; 

@@ -13,6 +13,10 @@
 
 #region Collisions 
 
+	//to check collisions with other objects just copy this region and exchange the "obj_collider" with the 
+	//the object to check collisiosns with. then make sure to set collided to true, since it acts as a trigger
+	//for the player hookshot state. 
+
 	//Horizontal 
 	if (!place_meeting(x + x_speed, y, obj_collider)) {
 		x += x_speed; 	
