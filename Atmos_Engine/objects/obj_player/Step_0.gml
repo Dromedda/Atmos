@@ -106,6 +106,12 @@
 					} 
 	
 				#endregion
+				
+				#region Dashing
+				
+					//@todo Imploment Dashing(?)
+				
+				#endregion
 			
 				#region Collisions Detection
 
@@ -143,7 +149,8 @@
 				#endregion
 			
 				#region Ducking
-			
+				
+				//@todo Is this really neccessary(?)
 					if ((key_down) && (!place_meeting(x + ((sprite_get_width(sprite_index)/2)), y, obj_collider))) {
 						if (!place_meeting(x - ((sprite_get_width(sprite_index)/2)), y, obj_collider)) {
 							ducking = true; 
