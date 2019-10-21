@@ -33,7 +33,7 @@
 		case "standard": 
 	
 			#region Movement
-
+			
 				#region Move Calculations 
 
 					move_dir_x = key_right - key_left; 
@@ -192,9 +192,9 @@
 			
 				#endregion
 			
-			break;
+		break;
 			
-		#endregion
+			#endregion
 
 		case "hookshot": 
 			x_speed = 0; 
@@ -220,61 +220,61 @@
 			} else {
 				state = "standard"; 	
 			}
-			break; 
+		break; 
 		
 		case "topdown": 
-				move_dir_x = key_right - key_left; 
-				move_dir_y = key_down - key_up; 
+			move_dir_x = key_right - key_left; 
+			move_dir_y = key_down - key_up; 
 			
-				if ((move_dir_x != 0) && (move_dir_y != 0)) {
-					move_speed_max = move_speed_max_diag; 
+			if ((move_dir_x != 0) && (move_dir_y != 0)) {
+				move_speed_max = move_speed_max_diag; 
+			} else {
+				move_speed_max = move_speed_max_org; 	
+			}
+			
+			if (((move_dir_x != 0) ||(move_dir_y != 0)) && ((current_move_dir_x == move_dir_x) ||(current_move_dir_y == move_dir_y))) {
+				if (move_speed < move_speed_max) {
+					move_speed += move_speed_acceleration; 
 				} else {
-					move_speed_max = move_speed_max_org; 	
-				}
+					move_speed = move_speed_max; 	
+				}	
+			}
 			
-				if (((move_dir_x != 0) ||(move_dir_y != 0)) && ((current_move_dir_x == move_dir_x) ||(current_move_dir_y == move_dir_y))) {
-					if (move_speed < move_speed_max) {
-						move_speed += move_speed_acceleration; 
-					} else {
-						move_speed = move_speed_max; 	
-					}	
-				}
+			x_speed = ((move_speed_max * move_dir_x) * delta_t); 
+			y_speed = ((move_speed_max * move_dir_y) * delta_t); 
 			
-				x_speed = ((move_speed_max * move_dir_x) * delta_t); 
-				y_speed = ((move_speed_max * move_dir_y) * delta_t); 
+			current_move_dir_x = move_dir_x; 
+			current_move_dir_y = move_dir_y; 
 			
-				current_move_dir_x = move_dir_x; 
-				current_move_dir_y = move_dir_y; 
-			
-				#region Collisions Detection
+			#region Collisions Detection
 
-					//Horizontal 
-					if (!place_meeting(x + x_speed, y, obj_collider)) {
-						x += x_speed; 	
-					} else {
-						while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
-							x += sign(x_speed); 	
-						}
+				//Horizontal 
+				if (!place_meeting(x + x_speed, y, obj_collider)) {
+					x += x_speed; 	
+				} else {
+					while (!place_meeting(x + sign(x_speed), y, obj_collider)) {
+						x += sign(x_speed); 	
 					}
+				}
 	
-					//Vertical
-					if (!place_meeting(x, y + y_speed, obj_collider)) {
-						y += y_speed; 	
-					} else {
-						while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
-							y += sign(y_speed);	
-						}
+				//Vertical
+				if (!place_meeting(x, y + y_speed, obj_collider)) {
+					y += y_speed; 	
+				} else {
+					while (!place_meeting(x, y + sign(y_speed), obj_collider)) {
+						y += sign(y_speed);	
 					}
+				}
 
-				#endregion
+			#endregion
 			
-				#region Dash
+			#region Dash
 			
-					//@todo Imploment Dasing in top down Mode
+				//@todo Imploment Dasing in top down Mode
 			
-				#endregion
+			#endregion
 
-			break; 
+		break; 
 	}
 	
 #endregion
@@ -292,28 +292,28 @@
 	if (room != rm_hub) {
 		
 		#region Old Sys
-		/*
-		if ((state != "hookshot") && (hs_cd >= 1)) {
-			hs_cd--; 
-			show_debug_message(hs_cd); 
-		}
-
-
-		if (key_c) && (hs_cd <= 0) {
-			hs_inst = noone; 
-			if (place_meeting(mouse_x, mouse_y, obj_hookshot_point)) {
-				if (jumps <= 1) {
-					jumps += 1; 	
-				}
-				state = "hookshot"; 
-				hs_cd = hs_cd_base; 
-			} else { //@Todo Make Player Shoot Out hookshot in a 4way drection. 
-				
+			/*
+			if ((state != "hookshot") && (hs_cd >= 1)) {
+				hs_cd--; 
+				show_debug_message(hs_cd); 
 			}
-		} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {
-			state = "standard"; 	
-		}
-		*/
+
+
+			if (key_c) && (hs_cd <= 0) {
+				hs_inst = noone; 
+				if (place_meeting(mouse_x, mouse_y, obj_hookshot_point)) {
+					if (jumps <= 1) {
+						jumps += 1; 	
+					}
+					state = "hookshot"; 
+					hs_cd = hs_cd_base; 
+				} else { //@Todo Make Player Shoot Out hookshot in a 4way drection. 
+				
+				}
+			} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {
+				state = "standard"; 	
+			}
+			*/
 		#endregion
 		
 		if ((state != "hookshot") && (hs_cd >= 1)) {
