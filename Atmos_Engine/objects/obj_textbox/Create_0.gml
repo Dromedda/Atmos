@@ -10,7 +10,7 @@
 
 #endregion 
 
-#region Pos Variables 
+#region Position Variables 
 
 	x_pos = (obj_camera.x - (320));   
 	y_pos = (obj_camera.y + (sprite_get_height(spr_text_box_background) - 60)); 
@@ -27,7 +27,7 @@
 
 #endregion
 
-#region Apply Pos Vars
+#region Apply Position Variables
 
 	x = x_pos; 
 	y = y_pos;  
