@@ -112,6 +112,55 @@
 					//@todo Imploment Dashing(?)
 				
 				#endregion
+				
+				#region (damage) and death
+				
+					//Check Collision with enemy parent
+					//@todo store colliding enemy in variable
+					if ((place_meeting(x, y, obj_enemy_parent)) && (!invis)) {
+						hp -= obj_enemy_parent.dmg; 
+	
+						invis = true; 
+						//emit_dmg_particles = true; 
+		
+						knock_back_bool = true;
+					}
+	
+					//Knockback	
+					if ((knock_back_bool) && (knock_back_timer >= 1)) {
+						knock_back_timer--; 	
+		
+						if (obj_enemy_parent.x < x) { 
+							knock_back_dir = 1; 	
+						} else {
+							knock_back_dir = -1; 	
+						}
+						
+						if (place_meeting(x, y, obj_enemy_parent)) {
+							x_speed = (knock_back * knock_back_dir) * delta_t;
+						}
+
+					} else { 
+						if (invis) {
+							x_speed = 0;
+						}
+						knock_back_bool = false; 
+						knock_back_timer = knock_back_timer_org; 
+					}
+	
+					if ((invis) && (invisible_timer >= 1)) {
+						invisible_timer--; 	
+					} else {
+						invisible_timer = invisible_timer_base; 
+						invis = false;
+		
+						//DEATH
+						if (hp <= 0) {
+							instance_destroy(self); 
+						}
+					}
+				
+				#endregion				
 			
 				#region Collisions Detection
 
@@ -314,7 +363,7 @@
 					}
 					state = "hookshot"; 
 					hs_cd = hs_cd_base; 
-				} else { //@Todo Make Player Shoot Out hookshot in a 4way drection. 
+				} else { 
 				
 				}
 			} else if ((state == "hookshot") && (mouse_check_button_released(mb_right))) {

@@ -16,24 +16,27 @@
 	//to check collisions with other objects just copy this region and exchange the "obj_collider" with the 
 	//the object to check collisiosns with. then make sure to set collided to true, since it acts as a trigger
 	//for the player hookshot state. 
-
+	
 	//Horizontal 
-	if (!place_meeting(x + x_speed, y, obj_collider)) {
+	if ((!place_meeting(x + x_speed, y, obj_collider)) && (!place_meeting(x + x_speed, y, obj_enemy_parent))) {
 		x += x_speed; 	
-	} else if (!place_meeting(x + sign(x_speed), y, obj_collider)) {
+	} else if ((!place_meeting(x + sign(x_speed), y, obj_collider)) && (!place_meeting(x + sign(x_speed), y, obj_enemy_parent))) {
 		x += sign(x_speed); 	
 	} else {
 		collided = true; 
 	}
 	
 	//Vertical
-	if (!place_meeting(x, y + y_speed, obj_collider)) {
+	if ((!place_meeting(x, y + y_speed, obj_collider)) && (!place_meeting(x, y + y_speed, obj_enemy_parent))) {
 		y += y_speed; 	
-	} else if (!place_meeting(x, y + sign(y_speed), obj_collider)) {
+	} else if ((!place_meeting(x, y + sign(y_speed), obj_collider)) && (!place_meeting(x, y + sign(y_speed), obj_enemy_parent))) {
 		y += sign(y_speed);	
 	} else {
 		collided = true; 
 	}
+		
+	
+
 
 #endregion
 

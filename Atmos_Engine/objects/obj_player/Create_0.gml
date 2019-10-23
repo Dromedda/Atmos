@@ -82,6 +82,27 @@
 	
 	#endregion
 	
+	#region Damage
+
+		invisible_timer = 30; 
+		invisible_timer_base = invisible_timer;
+		invis = false; 
+		invis_flicker = 4; 
+	
+		knock_back = 16; 
+		knock_back_dir = 0; 
+		knock_back_timer = 8; 
+		knock_back_timer_org = knock_back_timer; 
+		knock_back_bool = false; 
+	
+	#endregion
+	
+	#region stats 
+	
+		hp = 20; 
+	
+	#endregion
+	
 	#region Animations 
 	
 		facing_dir = 0; 
