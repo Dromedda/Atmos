@@ -119,10 +119,7 @@
 					//@todo store colliding enemy in variable
 					if ((place_meeting(x, y, obj_enemy_parent)) && (!invis)) {
 						hp -= obj_enemy_parent.dmg; 
-	
 						invis = true; 
-						//emit_dmg_particles = true; 
-		
 						knock_back_bool = true;
 					}
 	
@@ -234,11 +231,13 @@
 				
 					if ((key_lshft) && (!ducking) && (x_speed != 0)) {
 						show_debug_message("Sprinting"); 
+						
 						sprinting = true; 
 						move_speed_max = sprinting_move_speed; 	
 						show_debug_message(move_speed_max); 
 					} else if (!ducking) {
 						show_debug_message("!Sprinting"); 
+						
 						sprinting = false; 
 						move_speed_max = move_speed_max_org; 		
 					} else {
@@ -448,6 +447,7 @@
 			} else {
 				anim_state = "unknown"; 	
 			}
+			
 		} else if (state == "topdown") {
 			if ((x_speed != 0) ||(y_speed != 0)) {
 				anim_state = "run"; 
@@ -456,6 +456,7 @@
 			} else {
 				anim_state = "unknown"; 	
 			}
+			
 		}	
 		
 		switch(anim_state) {

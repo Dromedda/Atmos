@@ -1,4 +1,9 @@
- text_to_draw = "Hmm... Looks like the creator of this game forgot to give me something to say.."; 
+#region Text
+
+	 text_to_draw = "Hmm... Looks like the creator of this game forgot to give me something to say.."; 
+
+#endregion
+
 
 #region Alignment Variables
 	
