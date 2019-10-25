@@ -126,14 +126,13 @@
 					//Knockback	
 					if ((knock_back_bool) && (knock_back_timer >= 1)) {
 						knock_back_timer--; 	
-		
-						if (obj_enemy_parent.x < x) { 
-							knock_back_dir = 1; 	
-						} else {
-							knock_back_dir = -1; 	
-						}
 						
 						if (place_meeting(x, y, obj_enemy_parent)) {
+							if (obj_enemy_parent.x < x) { 
+								knock_back_dir = 1; 	
+							} else {
+								knock_back_dir = -1; 	
+							}
 							x_speed = (knock_back * knock_back_dir) * delta_t;
 						}
 
