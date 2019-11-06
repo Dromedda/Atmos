@@ -239,6 +239,14 @@
             }
         },
         {
+            "Key": "51e54187-aeba-4ef5-a1b6-2c745c565692",
+            "Value": {
+                "id": "d42413c9-db81-451d-abbd-f0099f4c9cec",
+                "resourcePath": "sprites\\spr_ts_dung_1\\spr_ts_dung_1.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "55078930-2857-4754-9b10-a1b7fc980534",
             "Value": {
                 "id": "c67f02d2-d768-441d-84e2-fa1524e2f36a",
@@ -527,6 +535,14 @@
             }
         },
         {
+            "Key": "c626c8a4-5bf1-4404-950b-d0b836ff9f77",
+            "Value": {
+                "id": "ffc4a56a-be2a-4f13-8eca-3a616057e766",
+                "resourcePath": "views\\c626c8a4-5bf1-4404-950b-d0b836ff9f77.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "c718a156-d91e-4b47-94d8-b766e66f55e0",
             "Value": {
                 "id": "705a6c75-de25-455e-82da-90d06d68d3ed",
@@ -567,6 +583,14 @@
             }
         },
         {
+            "Key": "e17caa37-f8b0-41d0-bed7-e1500ad89681",
+            "Value": {
+                "id": "06bbc95f-8d41-4253-9529-b9d7e7911fd6",
+                "resourcePath": "views\\e17caa37-f8b0-41d0-bed7-e1500ad89681.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "e2753ca6-f5af-406b-aed1-a173968f66c3",
             "Value": {
                 "id": "18f985e4-a4b4-47bd-8f16-1e29ee88d936",
@@ -604,6 +628,14 @@
                 "id": "66375c40-f2bd-4f8e-a919-594bd03d59c8",
                 "resourcePath": "scripts\\scr_image_blur\\scr_image_blur.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "f4535fb7-dbc2-46a1-b096-dd76460cc6b3",
+            "Value": {
+                "id": "7adeb86c-2f52-4ecb-90b8-bd9aefa49793",
+                "resourcePath": "tilesets\\ts_dung_1\\ts_dung_1.yy",
+                "resourceType": "GMTileSet"
             }
         },
         {

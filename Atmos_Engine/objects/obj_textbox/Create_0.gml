@@ -28,7 +28,7 @@
 	char_count = 0; 
 	creator = noone;  
 	
-	writing_speed = 5; 
+	writing_speed = 8; 
 
 #endregion
 
