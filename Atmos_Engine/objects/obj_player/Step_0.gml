@@ -107,12 +107,6 @@
 	
 				#endregion
 				
-				#region Dashing
-				
-					//@todo Imploment Dashing(?)
-				
-				#endregion
-				
 				#region (damage) and death
 				
 					//Check Collision with enemy parent
@@ -153,6 +147,7 @@
 						//DEATH
 						if (hp <= 0) {
 							instance_destroy(self); 
+							//@TODO make the room restart instead once the player can actually die. :) 	
 						}
 					}
 				
