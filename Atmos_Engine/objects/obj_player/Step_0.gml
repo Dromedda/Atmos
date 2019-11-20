@@ -109,8 +109,8 @@
 				
 				#region (damage) and death
 				
+					//@todo Make player Hp global and persistent through the rooms(?). 
 					//Check Collision with enemy parent
-					//@todo store colliding enemy in variable
 					if ((place_meeting(x, y, obj_enemy_parent)) && (!invis)) {
 				
 						invis = true; 
