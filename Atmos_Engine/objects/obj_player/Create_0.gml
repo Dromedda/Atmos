@@ -13,6 +13,9 @@
 		x_speed = 0; 
 		y_speed = 0; 
 		
+		x_start = x; 
+		y_start = y; 
+		
 		//Jumping
 		jumps = 0; 
 		jumps_max = 2; 
@@ -100,6 +103,7 @@
 	#region stats 
 	
 		hp = 20; 
+		hp_org = hp; 
 	
 	#endregion
 	
@@ -117,5 +121,11 @@
 	"hookshot"
 	"topdown"
 	*/
+
+#endregion
+
+#region Create Neccesary Player Controller Objects. 
+
+	instance_create_layer(0, 0, "Player", obj_player_gui); 
 
 #endregion

@@ -16,7 +16,7 @@
 	x_speed = 0; 
 	y_speed = 0; 
 	
-	dmg = 0; 
+	dmg = 5; 
 		
 	//emit_dmg_particles = false; 
 

@@ -112,9 +112,24 @@
 					//Check Collision with enemy parent
 					//@todo store colliding enemy in variable
 					if ((place_meeting(x, y, obj_enemy_parent)) && (!invis)) {
-						hp -= obj_enemy_parent.dmg; 
+				
 						invis = true; 
 						knock_back_bool = true;
+						
+						//Get enemy id and reduce player hp with that objects .dmg variable. 
+						var enmy = instance_place(x, y, obj_enemy_parent); 
+						if ((enmy != noone) && (enmy.dmg != noone)) { //Makesure object exists and has the correct variables. 
+							hp -= enmy.dmg; 	
+								
+							if (obj_enemy_parent.x < x) { 
+								knock_back_dir = 1; 	
+								x_speed = 0; 
+							} else {
+								knock_back_dir = -1; 	
+								x_speed = 0; 
+							}
+						}
+
 					}
 	
 					//Knockback	
@@ -122,18 +137,10 @@
 						knock_back_timer--; 	
 						
 						if (place_meeting(x, y, obj_enemy_parent)) {
-							if (obj_enemy_parent.x < x) { 
-								knock_back_dir = 1; 	
-							} else {
-								knock_back_dir = -1; 	
-							}
 							x_speed = (knock_back * knock_back_dir) * delta_t;
 						}
 
 					} else { 
-						if (invis) {
-							x_speed = 0;
-						}
 						knock_back_bool = false; 
 						knock_back_timer = knock_back_timer_org; 
 					}
@@ -143,12 +150,15 @@
 					} else {
 						invisible_timer = invisible_timer_base; 
 						invis = false;
-		
-						//DEATH
-						if (hp <= 0) {
-							instance_destroy(self); 
-							//@TODO make the room restart instead once the player can actually die. :) 	
-						}
+					}
+					
+					//DEATH
+					if (hp <= 0) {
+						room_restart(); 
+						x = x_start; 
+						y = y_start; 
+						hp = (hp_org/2); 
+						//@TODO make the room restart instead once the player can actually die. :) 	
 					}
 				
 				#endregion				
