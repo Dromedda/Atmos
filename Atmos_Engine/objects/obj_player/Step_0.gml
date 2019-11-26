@@ -158,7 +158,6 @@
 						x = x_start; 
 						y = y_start; 
 						hp = (hp_org/2); 
-						//@TODO make the room restart instead once the player can actually die. :) 	
 					}
 				
 				#endregion				
@@ -259,7 +258,7 @@
 			x_speed = 0; 
 			y_speed = 0; 
 			grav = 0; 
-	
+				
 			if (hs_inst != noone) {
 				hs_x_to = (((hs_inst.x) - x) * hs_speed); 
 				hs_y_to = (((hs_inst.y) - y) * hs_speed);		
@@ -279,6 +278,59 @@
 			} else {
 				state = "standard"; 	
 			}
+			
+			//Check Collision with enemy parent
+			if ((place_meeting(x, y, obj_enemy_parent)) && (!invis)) {
+				
+				invis = true; 
+				knock_back_bool = true;
+						
+				//Get enemy id and reduce player hp with that objects .dmg variable. 
+				var enmy = instance_place(x, y, obj_enemy_parent); 
+				if ((enmy != noone) && (enmy.dmg != noone)) { //Makesure object exists and has the correct variables. 
+					hp -= enmy.dmg; 	
+								
+					if (obj_enemy_parent.x < x) { 
+						knock_back_dir = 1; 	
+						x_speed = 0; 
+					} else {
+						knock_back_dir = -1; 	
+						x_speed = 0; 
+					}
+				}
+
+			}
+	
+			//Knockback	
+			if ((knock_back_bool) && (knock_back_timer >= 1)) {
+				knock_back_timer--; 	
+						
+				if (place_meeting(x, y, obj_enemy_parent)) {
+					x_speed = (knock_back * knock_back_dir) * delta_t;
+				}
+
+			} else { 
+				knock_back_bool = false; 
+				knock_back_timer = knock_back_timer_org; 
+			}
+	
+			if ((invis) && (invisible_timer >= 1)) {
+				invisible_timer--; 	
+			} else {
+				invisible_timer = invisible_timer_base; 
+				invis = false;
+			}
+					
+			//DEATH
+			if (hp <= 0) {
+				room_restart(); 
+				x = x_start; 
+				y = y_start; 
+				hp = (hp_org/2); 
+			}
+			
+			
+			
 		break; 
 		
 		case "topdown": 
