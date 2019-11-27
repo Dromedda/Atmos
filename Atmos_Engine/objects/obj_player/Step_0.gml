@@ -211,7 +211,7 @@
 						}	 	
 					}
 				
-					if (ducking) {
+					if (ducking) { //@note swap anim-states in the future, instead of of just rotating the player sprite. 
 						if (x_speed > 0) {
 							image_angle = 90;
 						} else if (x_speed <= 0) {
@@ -233,13 +233,13 @@
 				#region Sprinting
 				
 					if ((key_lshft) && (!ducking) && (x_speed != 0)) {
-						show_debug_message("Sprinting"); 
+						//show_debug_message("Sprinting"); 
 						
 						sprinting = true; 
 						move_speed_max = sprinting_move_speed; 	
-						show_debug_message(move_speed_max); 
+						//show_debug_message(move_speed_max); 
 					} else if (!ducking) {
-						show_debug_message("!Sprinting"); 
+						//show_debug_message("!Sprinting"); 
 						
 						sprinting = false; 
 						move_speed_max = move_speed_max_org; 		
