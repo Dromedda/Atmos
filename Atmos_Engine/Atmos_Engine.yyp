@@ -666,7 +666,7 @@
             "Key": "fb9b39e2-adb4-4e71-9df0-3404d273977e",
             "Value": {
                 "id": "dfa7c6df-4b8e-46c5-8627-a44c0e54e282",
-                "resourcePath": "sprites\\spr_player_hookshot\\spr_player_hookshot.yy",
+                "resourcePath": "sprites\\spr_hs_text\\spr_hs_text.yy",
                 "resourceType": "GMSprite"
             }
         }
