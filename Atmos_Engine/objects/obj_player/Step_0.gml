@@ -185,7 +185,6 @@
 				#endregion
 			
 				#region Melee 
-			
 					if (melee_cd >= 1) {
 						melee_cd--; 	
 					}
@@ -198,7 +197,6 @@
 				#endregion
 			
 				#region Ducking
-				
 				//@todo Is this really neccessary(?)
 					if ((key_down) && (!place_meeting(x + ((sprite_get_width(sprite_index)/2)), y, obj_collider))) {
 						if (!place_meeting(x - ((sprite_get_width(sprite_index)/2)), y, obj_collider)) {
@@ -231,7 +229,6 @@
 				#endregion
 			
 				#region Sprinting
-				
 					if ((key_lshft) && (!ducking) && (x_speed != 0)) {
 						//show_debug_message("Sprinting"); 
 						
@@ -240,14 +237,12 @@
 						//show_debug_message(move_speed_max); 
 					} else if (!ducking) {
 						//show_debug_message("!Sprinting"); 
-						
 						sprinting = false; 
 						move_speed_max = move_speed_max_org; 		
 					} else {
 						sprinting = false; 	
 					}
 				
-			
 				#endregion
 			
 		break;
@@ -281,7 +276,6 @@
 			
 			//Check Collision with enemy parent
 			if ((place_meeting(x, y, obj_enemy_parent)) && (!invis)) {
-				
 				invis = true; 
 				knock_back_bool = true;
 						
@@ -298,7 +292,6 @@
 						x_speed = 0; 
 					}
 				}
-
 			}
 	
 			//Knockback	
@@ -328,8 +321,6 @@
 				y = y_start; 
 				hp = (hp_org/2); 
 			}
-			
-			
 			
 		break; 
 		
@@ -512,7 +503,6 @@
 			} else {
 				anim_state = "unknown"; 	
 			}
-			
 		}	
 		
 		switch(anim_state) {
