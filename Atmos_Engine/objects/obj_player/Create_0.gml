@@ -2,12 +2,17 @@
 
 	#region Movement
 	
-		//Movement
+		//Movement Speed
 		move_speed = 2.2; 
 		move_speed_acceleration = 0.4; 
 		move_speed_max = move_speed; 
 		move_speed_max_org = move_speed_max; 
-		move_speed_max_diag = (move_speed_max * 0.707); 
+		
+		//Topdown Movement Speed
+		move_speed_td = (move_speed * 0.9); 
+		move_speed_td_max = move_speed_td; 
+		move_speed_td_max_org = move_speed_td_max; 
+		move_speed_td_max_diag = (move_speed_max * 0.707); 
 		
 		//Movement Application 
 		x_speed = 0; 

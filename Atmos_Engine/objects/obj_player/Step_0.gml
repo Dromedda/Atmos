@@ -329,21 +329,21 @@
 			move_dir_y = key_down - key_up; 
 			
 			if ((move_dir_x != 0) && (move_dir_y != 0)) {
-				move_speed_max = move_speed_max_diag; 
+				move_speed_td_max = move_speed_td_max_diag; 
 			} else {
-				move_speed_max = move_speed_max_org; 	
+				move_speed_td_max = move_speed_td_max_org; 	
 			}
 			
 			if (((move_dir_x != 0) ||(move_dir_y != 0)) && ((current_move_dir_x == move_dir_x) ||(current_move_dir_y == move_dir_y))) {
-				if (move_speed < move_speed_max) {
-					move_speed += move_speed_acceleration; 
+				if (move_speed_td < move_speed_td_max) {
+					move_speed_td_ += move_speed_acceleration; 
 				} else {
-					move_speed = move_speed_max; 	
+					move_speed_td_ = move_speed_td_max; 	
 				}	
 			}
 			
-			x_speed = ((move_speed_max * move_dir_x) * delta_t); 
-			y_speed = ((move_speed_max * move_dir_y) * delta_t); 
+			x_speed = ((move_speed_td_max * move_dir_x) * delta_t); 
+			y_speed = ((move_speed_td_max * move_dir_y) * delta_t); 
 			
 			current_move_dir_x = move_dir_x; 
 			current_move_dir_y = move_dir_y; 
