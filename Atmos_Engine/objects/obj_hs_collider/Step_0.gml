@@ -34,9 +34,6 @@
 	} else {
 		collided = true; 
 	}
-		
-	
-
 
 #endregion
 
