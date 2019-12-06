@@ -4,7 +4,8 @@
     "mvc": "1.1",
     "name": "c626c8a4-5bf1-4404-950b-d0b836ff9f77",
     "children": [
-        "e17caa37-f8b0-41d0-bed7-e1500ad89681"
+        "e17caa37-f8b0-41d0-bed7-e1500ad89681",
+        "1aacab39-c482-4e78-bf89-8970adb1b802"
     ],
     "filterType": "GMSprite",
     "folderName": "Tilesets",
