@@ -125,7 +125,7 @@
 	"standard" 
 	"hookshot"
 	"topdown"
-	@todo Add Noclip Mode here. 
+	"noclip"
 	*/
 
 #endregion

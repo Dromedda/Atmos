@@ -25,6 +25,16 @@
 
 #endregion
 
+#region Noclip Mode
+
+	if (obj_debugger.noclip) {
+		state = "noclip"; 
+		x_speed = 0; 
+		y_speed = 0; 
+	}
+
+#endregion
+
 #region Player State
 
 	//Player States
@@ -377,6 +387,30 @@
 			#endregion
 
 		break; 
+		
+		case "noclip": 
+			
+			var noclip_speed = 8; 
+			
+			if (key_lshft) {
+				noclip_speed = 16; 	
+			} else {
+				noclip_speed = 8; 	
+			}
+			
+			
+			var y_dir = key_down - key_up; 
+			var x_dir = key_right - key_left; 
+			
+			x += (noclip_speed * x_dir); 
+			y += (noclip_speed * y_dir); 
+			
+			if (!obj_debugger.noclip) {
+				state = "standard"; 	
+			}
+			
+		break; 
+		
 	}
 	
 #endregion
@@ -503,7 +537,9 @@
 			} else {
 				anim_state = "unknown"; 	
 			}
-		}	
+		} else if (state == "noclip") {
+			anim_state = "noclip"; 	
+		}
 		
 		switch(anim_state) {
 			case "run": 
@@ -519,6 +555,9 @@
 				sprite_index = spr_player_jump_down; 
 				break; 
 			case "unknown": 
+				sprite_index = spr_player_static; 
+				break; 
+			case "noclip": 
 				sprite_index = spr_player_static; 
 				break; 
 		}

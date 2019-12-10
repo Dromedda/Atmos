@@ -17,6 +17,8 @@
 		var key_room_next = keyboard_check_pressed(vk_right); 
 		var key_room_prev = keyboard_check_pressed(vk_left); 
 		
+		var key_noclip = keyboard_check_pressed(ord("N")); 
+		
 		if (key_room_goto) {
 			if (key_room_next) {
 				if (room != room_last) {
@@ -28,6 +30,12 @@
 				}
 			}
 		}
+		
+		//Noclip Mode For Player
+		if (key_noclip) {
+			noclip = !noclip; 			
+		}
+		
 	}
 
 #endregion

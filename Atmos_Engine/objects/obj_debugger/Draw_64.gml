@@ -4,9 +4,15 @@
 		draw_set_font(fnt_tooltip); 
 		draw_text(16, 16, "Room: " + string(room)); 
 		draw_text(16, 32, "shift + Arrow Keys = Change Room"); 	
+		draw_text(16, 48, "N = Noclip Mode"); 
 	} else {
 		draw_set_font(fnt_tooltip); 
 		draw_text(16, 16, "F2 to open Debugger"); 
+	}
+	
+	if (obj_player.state == "noclip") {
+		draw_set_font(fnt_text_box_standard); 
+		draw_text(200, 200, "NOCLIP MODE ACTIVE"); 	
 	}
 
 #endregion
