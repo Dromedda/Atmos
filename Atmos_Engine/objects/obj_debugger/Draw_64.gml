@@ -10,7 +10,7 @@
 		draw_text(16, 16, "F2 to open Debugger"); 
 	}
 	
-	if (obj_player.state == "noclip") {
+	if (noclip == true) {
 		draw_set_font(fnt_text_box_standard); 
 		draw_text(200, 200, "NOCLIP MODE ACTIVE"); 	
 	}
