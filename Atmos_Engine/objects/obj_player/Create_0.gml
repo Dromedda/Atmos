@@ -51,6 +51,9 @@
 		wall_jump = 0; 	
 		max_wall_jump = 2; 
 		wall_jumped = false; 
+		
+		//Falldamage 
+		fall_damage = 5; 
 	
 	#endregion
 	

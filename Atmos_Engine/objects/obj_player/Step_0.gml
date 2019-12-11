@@ -205,6 +205,26 @@
 					}
 			
 				#endregion
+				
+				#region Fall damage 
+				
+					if ((y_speed >= 12) && (on_ground)) {
+						if (!invis) {
+							invis = true; 
+							
+							//Take Damage Based on fall distance
+							if (y_speed >= 18) { 
+								hp -= (fall_damage * 2); 
+							} else {
+								hp -= fall_damage; 	
+							}
+							
+							//Set y_speed to zero so that it doesn't trigger again. 
+							y_speed = 0;
+						}
+					}
+				
+				#endregion
 			
 				#region Ducking
 				//@todo Is this really neccessary(?)
@@ -398,7 +418,6 @@
 				noclip_speed = 8; 	
 			}
 			
-			
 			var y_dir = key_down - key_up; 
 			var x_dir = key_right - key_left; 
 			
@@ -567,6 +586,9 @@
 #endregion
 
 #region Debugging 
+
+	//log y_speed
+	show_debug_message(y_speed); 
 
 	show_debug_message(state); 
 
