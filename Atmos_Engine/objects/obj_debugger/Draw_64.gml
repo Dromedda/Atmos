@@ -12,7 +12,7 @@
 	
 	if (noclip == true) {
 		draw_set_font(fnt_text_box_standard); 
-		draw_text(200, 200, "NOCLIP MODE ACTIVE"); 	
+		draw_text(view_get_wport(0)/2 - 96, view_get_hport(0)/2, "NOCLIP MODE ACTIVE"); 	
 	}
 
 #endregion
