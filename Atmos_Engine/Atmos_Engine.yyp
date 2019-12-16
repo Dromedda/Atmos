@@ -479,6 +479,14 @@
             }
         },
         {
+            "Key": "a889c6ec-12a1-428c-9bea-107f067f8808",
+            "Value": {
+                "id": "83e72b58-8bfd-4906-9ff7-d487d535706f",
+                "resourcePath": "objects\\obj_window_manager\\obj_window_manager.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "a965be50-a9e2-4f43-b491-0b8466f09d94",
             "Value": {
                 "id": "d709da2b-8413-43e9-bca6-95f1c7c6d4b3",
