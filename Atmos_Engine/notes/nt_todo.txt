@@ -1,0 +1,23 @@
+Graphics: 
+	Player: 
+		Melee; 
+		Death; 
+		Interaction; 
+		
+	Enemy: 
+		Idle; 
+		Walk;
+		Melee;
+		Special Attack;
+		Death; 
+		
+Gameplay: 
+	Level Design: 
+		rm_1, rm_2, rm_3 and rm_4; 
+		Final Boss Battle Rooms	(1, 2, 3, 4); 
+	
+Fixes: 
+	Player: 
+		Fix The Hookshot Graphics so that it lines up; 
+	
+	

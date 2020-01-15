@@ -5,7 +5,7 @@
 		Possible Resolutions: 
 			900 (upscale)
 			720 (Upscale)
-			360Native For the game)
+			360 (Native For the game)
 	*/ 
 
 	width = 0; 
