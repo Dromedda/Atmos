@@ -53,7 +53,7 @@
 		wall_jumped = false; 
 		
 		//Falldamage 
-		fall_damage = 5; 
+		fall_damage = 7; 
 	
 	#endregion
 	

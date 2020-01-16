@@ -47,6 +47,14 @@
             }
         },
         {
+            "Key": "01d9f665-7b59-4b3e-b35f-252c8591e8bd",
+            "Value": {
+                "id": "062cd652-eab7-4382-b208-ae9e86ab9095",
+                "resourcePath": "notes\\nt_todo.yy",
+                "resourceType": "GMNotes"
+            }
+        },
+        {
             "Key": "03b5cb59-3c06-4147-81d8-39e9956c116c",
             "Value": {
                 "id": "3034be52-12c3-47e6-a470-a32e193764b2",
@@ -476,6 +484,14 @@
                 "id": "6af37e57-17a5-4ed1-913b-22946773292a",
                 "resourcePath": "sprites\\spr_text_box_background\\spr_text_box_background.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "a889c6ec-12a1-428c-9bea-107f067f8808",
+            "Value": {
+                "id": "83e72b58-8bfd-4906-9ff7-d487d535706f",
+                "resourcePath": "objects\\obj_window_manager\\obj_window_manager.yy",
+                "resourceType": "GMObject"
             }
         },
         {
