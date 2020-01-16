@@ -20,18 +20,6 @@ draw_self();
 	
 #endregion
 
-#region Sprinting
-
-	if (sprinting) {
-		if (facing_dir == -1) {
-			scr_image_blur(16, 0); 		
-		} else {
-			scr_image_blur(16, 180); 	
-		}
-	}
-
-#endregion
-
 #region Flickering Upon taking Damage Effect
 
 	if (place_meeting(x, y, obj_enemy_parent)) {

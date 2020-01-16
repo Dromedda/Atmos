@@ -6,7 +6,7 @@
 	x_speed = 0; 
 	y_speed = 0; 
 	
-	move_speed = 12; 
+	move_speed = 16; 
 	
 	collided = false; 
 	

@@ -59,7 +59,7 @@
 	
 	#region Melee
 	
-		melee_cd = 10; 
+		melee_cd = 6; 
 		melee_cd_base = melee_cd; 
 	
 	#endregion
@@ -88,8 +88,8 @@
 	#region Sprinting
 	
 		sprinting = false; 
-		sprinting_move_speed = (move_speed_max * 1.3); 
-		sprinting_image_speed = 1.75; 
+		sprinting_move_speed = (move_speed_max * 1.4); 
+		sprinting_image_speed = 2.25; 
 	
 	#endregion
 	

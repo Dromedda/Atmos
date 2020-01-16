@@ -1,3 +1,7 @@
 var player_health = obj_player.hp; 
 
-draw_text(8, 8, player_health); 
+//@note todo: Make A Seperate Font For player health. 
+
+draw_text(8, 342, "Health=  " + string(player_health));
+
+	
