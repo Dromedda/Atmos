@@ -17,6 +17,20 @@
 	//the object to check collisiosns with. then make sure to set collided to true, since it acts as a trigger
 	//for the player hookshot state. 
 	
+	//New Sys Needs To Be Tweaked :( 
+	/*
+	var sw = sprite_get_width(sprite_index); 
+	var sh = sprite_get_height(sprite_index); 
+	
+	if (!collision_line(x, y, x + ((sw * 1.25) * x_dir), y + ((sh * 1.25) * y_dir), obj_collider, true, true)) {
+		x += x_speed; 
+		y += y_speed; 
+	} else {
+		collided = true; 	
+	}
+	*/
+	
+	
 	//Horizontal 
 	if ((!place_meeting(x + x_speed, y, obj_collider)) && (!place_meeting(x + x_speed, y, obj_enemy_parent))) {
 		x += x_speed; 	
@@ -34,7 +48,8 @@
 	} else {
 		collided = true; 
 	}
-
+	
+	
 #endregion
 
 #region Collided
