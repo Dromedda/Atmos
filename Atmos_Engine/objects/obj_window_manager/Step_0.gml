@@ -41,12 +41,17 @@ if (resolution != noone) {
 			break; 
 		}	
 	}
-									  
-	if ((width != window_width_prev) || (height != window_height_prev)) {
-		window_set_size(width, height); 
-	} else {
-		height = window_height_prev; 
-		width = window_width_prev; 
+	
+	if (!window_get_fullscreen()) {
+		
+		show_debug_message(window_get_fullscreen()); 
+		
+		if ((width != window_width_prev) || (height != window_height_prev)) {
+			window_set_size(width, height); 
+		} else {
+			height = window_height_prev; 
+			width = window_width_prev; 
+		}
 	}
  
 } else {

@@ -34,6 +34,8 @@
 	//Horizontal 
 	if ((!place_meeting(x + x_speed, y, obj_collider)) && (!place_meeting(x + x_speed, y, obj_enemy_parent))) {
 		x += x_speed; 	
+	} else if ((!place_meeting(x + (x_speed/2), y, obj_collider)) && (!place_meeting(x + (y_speed/2), y, obj_enemy_parent))) {
+	
 	} else if ((!place_meeting(x + sign(x_speed), y, obj_collider)) && (!place_meeting(x + sign(x_speed), y, obj_enemy_parent))) {
 		x += sign(x_speed); 	
 	} else {
@@ -43,6 +45,8 @@
 	//Vertical
 	if ((!place_meeting(x, y + y_speed, obj_collider)) && (!place_meeting(x, y + y_speed, obj_enemy_parent))) {
 		y += y_speed; 	
+	} else if ((!place_meeting(x, y + (y_speed / 2), obj_collider)) && (!place_meeting(x, y + (y_speed/2), obj_enemy_parent))) {
+		y += (y_speed/2); 	
 	} else if ((!place_meeting(x, y + sign(y_speed), obj_collider)) && (!place_meeting(x, y + sign(y_speed), obj_enemy_parent))) {
 		y += sign(y_speed);	
 	} else {
@@ -66,7 +70,7 @@
 			obj_player.hs_inst = noone; 
 			instance_destroy(self); 	
 		}
-	} 
+	}
 
 #endregion
 
