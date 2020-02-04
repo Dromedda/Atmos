@@ -53,7 +53,6 @@
 		collided = true; 
 	}
 	
-	
 #endregion
 
 #region Collided
@@ -80,10 +79,10 @@
 		instance_destroy(self); 	
 	}
 
-	hs_x_rng = (hs_x_range / 2); 
-	hs_y_rng = (hs_y_range / 2); 
+	hs_x_fs_range = (hs_x_range / 2); 
+	hs_y_fs_range = (hs_y_range / 2); 
 
-	if (!collision_rectangle(x - hs_x_rng, y - hs_y_rng, x + hs_x_rng, y + hs_y_rng, obj_player, false, true)) {
+	if (!collision_rectangle(x - hs_x_fs_range, y - hs_y_fs_range, x + hs_x_fs_range, y + hs_y_fs_range, obj_player, false, true)) {
 		instance_destroy(self); 	
 	}
 
